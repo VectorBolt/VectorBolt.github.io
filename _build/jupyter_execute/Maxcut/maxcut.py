@@ -7,7 +7,7 @@
 #</style>
 
 from IPython.core.display import HTML
-css_file = '../style.css'
+css_file = '../_build/html/_static/my-style.css'
 HTML(open(css_file, 'r').read())
 
 # Maxcut

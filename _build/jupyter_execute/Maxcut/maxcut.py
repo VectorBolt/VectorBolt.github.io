@@ -1,15 +1,3 @@
-#%%html
-#<style>
-#h1 {
-#    text-align: center;
-#    color: DarkCyan
-#}
-#</style>
-
-from IPython.core.display import HTML
-css_file = '../_build/html/_static/my-style.css'
-HTML(open(css_file, 'r').read())
-
 # Maxcut
 ___
 

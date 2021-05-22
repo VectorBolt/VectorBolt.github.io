@@ -77,7 +77,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="../index.html">
   
-  <img src="../_static/Edited Headshot.png" class="logo" alt="logo">
+  <img src="../_static/Headshot.jpeg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Avneesh Verma</h1>
@@ -91,7 +91,7 @@
     <ul class="nav sidenav_l1">
  <li class="toctree-l1">
   <a class="reference internal" href="../landing-page.html">
-   Hello
+   Avneesh Verma
   </a>
  </li>
 </ul>
@@ -244,20 +244,7 @@
         
               <div>
                 
-  <div class="cell tag_remove-input docutils container">
-<div class="cell_output docutils container">
-<div class="output text_html"><style>
-
-text_cell_render h1 {
-	font-family: "Helvetica";
-	color: DarkCyan;
-	text-align: center
-}
-
-</style>
-</div></div>
-</div>
-<div class="section" id="maxcut">
+  <div class="section" id="maxcut">
 <h1>Maxcut<a class="headerlink" href="#maxcut" title="Permalink to this headline">¶</a></h1>
 <hr class="docutils" />
 <div class="cell docutils container">
@@ -339,7 +326,7 @@ text_cell_render h1 {
  (0, 6): Text(-0.3094843981483835, -0.29077682644387237, &#39;2.99&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_4_1.png" src="../_images/maxcut_4_1.png" />
+<img alt="../_images/maxcut_3_1.png" src="../_images/maxcut_3_1.png" />
 </div>
 </div>
 <div class="section" id="creating-our-cost-function">
@@ -445,7 +432,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_11_0.png" src="../_images/maxcut_11_0.png" />
+<img alt="../_images/maxcut_10_0.png" src="../_images/maxcut_10_0.png" />
 </div>
 </div>
 <p>And this is what the applying the mixer unitary would look like for each node.</p>
@@ -458,7 +445,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_13_0.png" src="../_images/maxcut_13_0.png" />
+<img alt="../_images/maxcut_12_0.png" src="../_images/maxcut_12_0.png" />
 </div>
 </div>
 <p>Finally, we can create our QAOA circuit. The number of qubits and is the same as the number of nodes in our graph. We start by applying a layer of Hadamard gates to produce our initial superposition state <span class="math notranslate nohighlight">\(|s\rangle\)</span>. Then, we alternate applying our cost and mixer unitaries. Each time we apply a layer of cost and mixer unitaries corresponds to one iteration.</p>
@@ -551,11 +538,11 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_19_0.png" src="../_images/maxcut_19_0.png" />
-<img alt="../_images/maxcut_19_1.png" src="../_images/maxcut_19_1.png" />
-<img alt="../_images/maxcut_19_2.png" src="../_images/maxcut_19_2.png" />
-<img alt="../_images/maxcut_19_3.png" src="../_images/maxcut_19_3.png" />
-<img alt="../_images/maxcut_19_4.png" src="../_images/maxcut_19_4.png" />
+<img alt="../_images/maxcut_18_0.png" src="../_images/maxcut_18_0.png" />
+<img alt="../_images/maxcut_18_1.png" src="../_images/maxcut_18_1.png" />
+<img alt="../_images/maxcut_18_2.png" src="../_images/maxcut_18_2.png" />
+<img alt="../_images/maxcut_18_3.png" src="../_images/maxcut_18_3.png" />
+<img alt="../_images/maxcut_18_4.png" src="../_images/maxcut_18_4.png" />
 </div>
 </div>
 </div>
@@ -614,7 +601,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_25_0.png" src="../_images/maxcut_25_0.png" />
+<img alt="../_images/maxcut_24_0.png" src="../_images/maxcut_24_0.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -736,7 +723,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
  (2, 4): Text(-0.11949405461248812, -0.5866079359523575, &#39;3.03&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_30_1.png" src="../_images/maxcut_30_1.png" />
+<img alt="../_images/maxcut_29_1.png" src="../_images/maxcut_29_1.png" />
 </div>
 </div>
 <p>How does this compare to the actual solution? To check, we’ll use a brute force approach to find the solution classically.</p>
@@ -779,7 +766,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
  (2, 4): Text(0.11978415878415191, -0.5770333968823671, &#39;3.03&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_34_1.png" src="../_images/maxcut_34_1.png" />
+<img alt="../_images/maxcut_33_1.png" src="../_images/maxcut_33_1.png" />
 </div>
 </div>
 <p>So how does our QAOA circuit stack up against brute force, in terms of finding the correct answer? Well, we can use the ratio between the cut value from the QAOA’s answer and the cut value of the correct answer. A higher number means that our QAOA did a better job. For small graphs, we can even get the exact correct answer, resulting in a ratio of 1.0!</p>

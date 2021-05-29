@@ -1,0 +1,868 @@
+
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quantum Key Distribution (BB84 Protocol) &#8212; Avneesh Verma</title>
+    
+  <link rel="stylesheet" href="_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+
+    
+  <link rel="stylesheet"
+    href="_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    
+      
+  <link rel="stylesheet"
+    href="_static/vendor/open-sans_all/1.44.1/index.css">
+  <link rel="stylesheet"
+    href="_static/vendor/lato_latin-ext/1.44.1/index.css">
+
+    
+    <link rel="stylesheet" href="_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
+    <link rel="stylesheet" type="text/css" href="_static/my-style.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
+    <link rel="stylesheet" type="text/css" href="_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
+    
+  <link rel="preload" as="script" href="_static/js/index.d3f166471bb80abb5163.js">
+
+    <script id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script src="_static/jquery.js"></script>
+    <script src="_static/underscore.js"></script>
+    <script src="_static/doctools.js"></script>
+    <script src="_static/language_data.js"></script>
+    <script src="_static/togglebutton.js"></script>
+    <script src="_static/clipboard.min.js"></script>
+    <script src="_static/copybutton.js"></script>
+    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
+    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
+    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
+    <script >
+        const thebe_selector = ".thebe"
+        const thebe_selector_input = "pre"
+        const thebe_selector_output = ".output"
+    </script>
+    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Maxcut" href="Maxcut/maxcut.html" />
+    <link rel="prev" title="Avneesh Verma" href="landing-page.html" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="docsearch:language" content="en" />
+
+
+
+  </head>
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
+    
+
+    <div class="container-xl">
+      <div class="row">
+          
+<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+    
+        <div class="navbar-brand-box">
+<a class="navbar-brand text-wrap" href="index.html">
+  
+  <img src="_static/Headshot.jpeg" class="logo" alt="logo">
+  
+  
+  <h1 class="site-logo" id="site-title">Avneesh Verma</h1>
+  
+</a>
+</div><form class="bd-search d-flex align-items-center" action="search.html" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
+</form>
+<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+    <ul class="nav sidenav_l1">
+ <li class="toctree-l1">
+  <a class="reference internal" href="landing-page.html">
+   Avneesh Verma
+  </a>
+ </li>
+</ul>
+<ul class="current nav sidenav_l1">
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Quantum Key Distribution (BB84 Protocol)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="Maxcut/maxcut.html">
+   Maxcut
+  </a>
+ </li>
+</ul>
+
+</nav> <!-- To handle the deprecated key -->
+
+<div class="navbar_extra_footer">
+  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
+</div>
+
+</div>
+
+
+          
+
+
+          
+<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
+    
+    <div class="topbar container-xl fixed-top">
+    <div class="topbar-contents row">
+        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
+        <div class="col pl-md-4 topbar-main">
+            
+            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
+                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
+                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
+                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
+                <i class="fas fa-bars"></i>
+                <i class="fas fa-arrow-left"></i>
+                <i class="fas fa-arrow-up"></i>
+            </button>
+            
+            
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
+            class="fas fa-download"></i></button>
+
+    <div class="dropdown-buttons">
+        <!-- ipynb file if we had a myst markdown file -->
+        
+        <!-- Download raw file -->
+        <a class="dropdown-buttons" href="_sources/Quantum Key Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
+                data-placement="left">.ipynb</button></a>
+        <!-- Download PDF via print -->
+        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
+            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
+    </div>
+</div>
+
+            <!-- Source interaction buttons -->
+
+
+            <!-- Full screen (wrap in <a> to have style consistency -->
+            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
+                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
+                    title="Fullscreen mode"><i
+                        class="fas fa-expand"></i></button></a>
+
+            <!-- Launch buttons -->
+
+<div class="dropdown-buttons-trigger">
+    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
+        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
+    <div class="dropdown-buttons">
+        
+        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Quantum Key Distribution.ipynb"><button type="button"
+                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
+                data-placement="left"><img class="binder-button-logo"
+                    src="_static/images/logo_binder.svg"
+                    alt="Interact on binder">Binder</button></a>
+        
+        
+        
+        
+    </div>
+</div>
+
+        </div>
+
+        <!-- Table of contents -->
+        <div class="d-none d-md-block col-md-2 bd-toc show">
+            
+        <div class="tocsection onthispage pt-5 pb-3">
+            <i class="fas fa-list"></i> Contents
+        </div>
+        <nav id="bd-toc-nav">
+            <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#what-is-bb84">
+   What is BB84?
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#overview">
+   Overview
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#encoding">
+   Encoding
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sending-the-qubits">
+   Sending the qubits
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#measurement">
+   Measurement
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison">
+   Comparison
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#interception">
+   Interception
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#interception-by-eve">
+     ⚠️ Interception by Eve ⚠️
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Comparison
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#waiiiiiiit-a-second">
+     Waiiiiiiit a Second…
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#sources">
+   Sources
+  </a>
+ </li>
+</ul>
+
+        </nav>
+        
+        </div>
+    </div>
+</div>
+    <div id="main-content" class="row">
+        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
+        
+              <div>
+                
+  <div class="section" id="quantum-key-distribution-bb84-protocol">
+<h1>Quantum Key Distribution (BB84 Protocol)<a class="headerlink" href="#quantum-key-distribution-bb84-protocol" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Let’s say <strong>Alice 💁‍♀️ and Bob 🙋‍♂️</strong> want to set up a secure communication channel, so that they can send private messages to each other without worrying about someone eavesdropping on their conversation.
+Unfortunately, it is virtually impossible to set up such a secure channel—there would always be some way of tapping into it and reading their messages.</p>
+<p>That’s where cryptography comes in! If Alice wants to send a message to Bob, she can encrypt it in some way (say, by replacing every letter in the alphabet with a number).</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}
+A \rightarrow 1 \\
+B \rightarrow 2 \\
+C \rightarrow 3 \\
+\vdots \\
+Z \rightarrow 26
+\end{split}\]</div>
+<p>If Bob knows exactly how she encoded the message, he can decode it by reversing the encryption (replace every 1 with an <span class="math notranslate nohighlight">\(A\)</span>, every 2 with a <span class="math notranslate nohighlight">\(B\)</span>, etc.) However, if <strong>Eve 😈</strong> (or any other eavesdropper) were to  hack their communication channel, they would still have no idea what the message says! It would just look like a string of numbers to them!</p>
+<p>Of course, an encryption scheme like this would be pretty easy to crack—Eve could just guess that the numbers correspond to certain letters of the alphabet—but Alice and Bob could always use a more advanced technique instead. Many of these encryption techniques fall under the category of <strong>Symmetric Key Cryptography</strong>, in which each party is given a <em>key</em> 🔑 which contains the instructions for encrypting and decrypting the message. In our earlier example, this key would have contained the instructions to replace every letter of the alphabet with it’s corresponding index. This key could just be a string of bits (0s and 1s) encoding the instructions for encryption and decryption.</p>
+<p>Let’s assume that, as long as Alice and Bob share a secret key, they are able to securely encrypt their messages in a way that would be impossible to decrypt without this key. So, if Eve taps into their communication channel and reads their messages, she would have no idea what the messages say, since she would not know the key used to encrypt and decrypt them.</p>
+</div>
+<div class="section" id="what-is-bb84">
+<h2>What is BB84?<a class="headerlink" href="#what-is-bb84" title="Permalink to this headline">¶</a></h2>
+<p>Of course, in order to actually set up this encrypted channel, Alice and Bob actually need to communicate in secret to decide what key to use. But this kind of secure communication requires an encrypted channel, which is what we’re trying to create in the first place!</p>
+<p>Ideally, Alice and Bob could meet up in the real world, and Alice could whisper the key into Bob’s ear. But it would be impractical to meet up everytime they wanted to setup a private message channel—imagine if you had to meet someone in person before being able to email them at all!</p>
+<p>The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is <em>not</em> intercepted, have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key <em>is</em> intercepted, they can just repeat the process again and again until they have a key that no one else knows.</p>
+<p>However, there are certain requirements for this protocol to work:</p>
+<ul class="simple">
+<li><p>Both Alice and Bob must have access to their own quantum computer.</p></li>
+<li><p>They must have a communication channel capable of transmitting qubits. This could be some kind of fibre-optic cable capable of transmitting polarized photons.</p></li>
+<li><p>They must have a classical communication channel (like a telephone cable).
+Since it is impossible to ensure perfect security, we must assume that any of these channels can be tapped into by Eve the Eavesdropper 😈.</p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Here’s how the protocol works in a nutshell:</p>
+<ol class="simple">
+<li><p>Alice creates a random string of bits, and for each bit, she randomly chooses a basis to encode it in.</p></li>
+<li><p>Alice encodes the bits into qubits using her chosen bases, and sends the qubits over a quantum communication channel to Bob’s quantum computer.</p></li>
+<li><p>Bob also randomly chooses a basis to decode each qubit in. He measures each qubit in the bases he chose.</p></li>
+<li><p>Alice uses a classical communication channel to tell Bob which bases she chose. She also tells him the first few bits she sent.</p></li>
+<li><p>Bob analyzes these first few bits to determine whether Eve tapped into their quantum communication channel and intercepted Alice’s qubits.</p></li>
+<li><p>If Eve did <em>not</em> intercept the qubits, they consider all of the qubits that they happened to choose the same bases for, and use those bits as their key. If Eve <em>did</em> intercept the qubits, they repeat the process all over again.</p></li>
+</ol>
+<p>Now, let’s break down what each of those steps entails. <strong>First, we’ll take a look at how it works if the message is not intercepted by Eve</strong>.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Qiskit</span>
+<span class="kn">from</span> <span class="nn">qiskit</span> <span class="kn">import</span> <span class="o">*</span>
+<span class="kn">from</span> <span class="nn">qiskit.tools.visualization</span> <span class="kn">import</span> <span class="n">plot_bloch_multivector</span>
+<span class="kn">import</span> <span class="nn">random</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="encoding">
+<h2>Encoding<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h2>
+<p>The first step is for Alice to choose a string of bits and bases to encode them in. What do we mean by “bases”?
+Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis can be considered a possible bases. If a vector points directly upward, it is said to be in the state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, and if it points downward, it is said to be in the state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. The vertical axis is called the <span class="math notranslate nohighlight">\(Z\)</span>-axis. In the <span class="math notranslate nohighlight">\(Z\)</span>-basis, we can encode a 0 as <span class="math notranslate nohighlight">\(|0\rangle\)</span> (shown in the image on the left) and a 1 as <span class="math notranslate nohighlight">\(|1\rangle\)</span> (shown in the image on the right).</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/Quantum Key Distribution_6_0.png" src="_images/Quantum Key Distribution_6_0.png" />
+</div>
+</div>
+<p>Another basis we can use is the <span class="math notranslate nohighlight">\(X\)</span>-basis, which lies on the <span class="math notranslate nohighlight">\(X\)</span>-axis. Here, the image on the left represents the <span class="math notranslate nohighlight">\(|+\rangle\)</span> state, which can represent a bit value of 0, and the image on the right represents the <span class="math notranslate nohighlight">\(|-\rangle\)</span> state, which can represent a bit value of 1.</p>
+<div class="cell tag_remove-input docutils container">
+<div class="cell_output docutils container">
+<img alt="_images/Quantum Key Distribution_8_0.png" src="_images/Quantum Key Distribution_8_0.png" />
+</div>
+</div>
+<p>Now, we have two different ways to encode a 0, and two different ways to encode a 1!</p>
+<p>The first step is for Alice to randomly create a string of, say, 500 bits. She can do this by flipping a coin and writing down 0 everytime she lands on heads and 1 everytime she lands on tails.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Preparation for encoding</span>
+<span class="n">KEY_LENGTH</span> <span class="o">=</span> <span class="mi">500</span>
+<span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Seed the random number generator. This will be used as our &quot;coin flipper&quot;.</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generating a random string of bits</span>
+<span class="n">alice_bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">):</span>
+    <span class="n">randBit</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Flip Coin</span>
+    <span class="n">alice_bits</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">randBit</span><span class="p">)</span> <span class="c1"># Add randomly chosen bit to the bit string.</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The bits Alice is going to send are: &quot;</span> <span class="o">+</span> <span class="n">alice_bits</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The bits Alice is going to send are: 1101111110...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, Alice randomly chooses a basis of each bit (either the <span class="math notranslate nohighlight">\(Z\)</span>-basis or the <span class="math notranslate nohighlight">\(X\)</span>-basis). She can do this by flipping a coin and writing down <span class="math notranslate nohighlight">\(Z\)</span> everytime she lands on heads and <span class="math notranslate nohighlight">\(X\)</span> everytime she lands on tails.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_random_bases</span><span class="p">(</span><span class="n">num_of_bases</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function selects a random basis for each bit&quot;&quot;&quot;</span>
+    <span class="n">bases_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_of_bases</span><span class="p">):</span>
+        <span class="n">randBasis</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Flip Coin</span>
+
+        <span class="k">if</span> <span class="n">randBasis</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">bases_string</span> <span class="o">+=</span> <span class="s2">&quot;Z&quot;</span> 
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">bases_string</span> <span class="o">+=</span> <span class="s2">&quot;X&quot;</span>
+            
+    <span class="k">return</span> <span class="n">bases_string</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alice_bases</span> <span class="o">=</span> <span class="n">generate_random_bases</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="c1"># Alice randomly chooses a basis for each bit.</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The bases Alice is going to encode them in are: &quot;</span> <span class="o">+</span> <span class="n">alice_bases</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The bases Alice is going to encode them in are: ZXXZZZZXZX...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now, Alice encodes each bit into its corresponding basis on her quantum computer, creating a string of 500 qubits. She sends these qubits over an optical cable to Bob. Let’s see how to do this using Qiskit.</p>
+<p>By default, IBM’s quantum computers measure in the <span class="math notranslate nohighlight">\(Z\)</span>-basis, and all qubits are initialized to <span class="math notranslate nohighlight">\(|0\rangle\)</span>. To turn this into a <span class="math notranslate nohighlight">\(|1\rangle\)</span>, we need to apply an <span class="math notranslate nohighlight">\(X\)</span> gate.</p>
+<p>To encode in the <span class="math notranslate nohighlight">\(X\)</span>-basis, we start with the corresponding <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and then apply a Hadamard (H) gate. This gate converts a <span class="math notranslate nohighlight">\(|0\rangle\)</span> into a <span class="math notranslate nohighlight">\(|+\rangle\)</span> and a <span class="math notranslate nohighlight">\(|1\rangle\)</span> into a <span class="math notranslate nohighlight">\(|-\rangle\)</span>.</p>
+<table class="colwidths-auto table">
+<thead>
+<tr class="row-odd"><th class="text-align:center head"><p>Bit</p></th>
+<th class="text-align:center head"><p>Basis</p></th>
+<th class="text-align:center head"><p>Qubit State</p></th>
+<th class="text-align:center head"><p>Gate Required</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>Z</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vert0\rangle\)</span></p></td>
+<td class="text-align:center"><p>None</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>Z</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vert1\rangle\)</span></p></td>
+<td class="text-align:center"><p>X</p></td>
+</tr>
+<tr class="row-even"><td class="text-align:center"><p>0</p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vert+\rangle\)</span></p></td>
+<td class="text-align:center"><p>H</p></td>
+</tr>
+<tr class="row-odd"><td class="text-align:center"><p>1</p></td>
+<td class="text-align:center"><p>X</p></td>
+<td class="text-align:center"><p><span class="math notranslate nohighlight">\(\vert-\rangle\)</span></p></td>
+<td class="text-align:center"><p>X then H</p></td>
+</tr>
+</tbody>
+</table>
+<p>We’ll store the quantum circuit used to encode each qubit.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">encode</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;This function encodes each bit into the given basis.&quot;&quot;&quot;</span>
+    
+    <span class="n">encoded_qubits</span> <span class="o">=</span> <span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="n">bit</span><span class="p">,</span> <span class="n">basis</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">bits</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+        <span class="n">qc</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Create a quantum circuit for each qubit</span>
+        
+        <span class="c1"># Possible Cases</span>
+        <span class="k">if</span> <span class="n">bit</span><span class="o">==</span><span class="s2">&quot;0&quot;</span> <span class="ow">and</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+            <span class="n">encoded_qubits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span> <span class="c1"># Do not apply any gates</span>
+
+        <span class="k">elif</span> <span class="n">bit</span><span class="o">==</span><span class="s2">&quot;1&quot;</span> <span class="ow">and</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply X Gate</span>
+            <span class="n">encoded_qubits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">bit</span><span class="o">==</span><span class="s2">&quot;0&quot;</span> <span class="ow">and</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply H Gate</span>
+            <span class="n">encoded_qubits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">bit</span><span class="o">==</span><span class="s2">&quot;1&quot;</span> <span class="ow">and</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">x</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply X Gate</span>
+            <span class="n">qc</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="c1"># Apply H Gate</span>
+            <span class="n">encoded_qubits</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">qc</span><span class="p">)</span>
+            
+    <span class="k">return</span> <span class="p">(</span><span class="n">encoded_qubits</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Encode Alice&#39;s bits</span>
+<span class="n">encoded_qubits</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">alice_bits</span><span class="p">,</span> <span class="n">alice_bases</span><span class="p">)</span>
+
+<span class="c1"># Print circuits for first 5 qubits.</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">encoded_qubits</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;etc.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>     ┌───┐
+q_0: ┤ X ├
+     └───┘
+c: 1/═════
+          
+     ┌───┐┌───┐
+q_0: ┤ X ├┤ H ├
+     └───┘└───┘
+c: 1/══════════
+               
+     ┌───┐
+q_0: ┤ H ├
+     └───┘
+c: 1/═════
+          
+     ┌───┐
+q_0: ┤ X ├
+     └───┘
+c: 1/═════
+          
+     ┌───┐
+q_0: ┤ X ├
+     └───┘
+c: 1/═════
+          
+etc.
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="sending-the-qubits">
+<h2>Sending the qubits<a class="headerlink" href="#sending-the-qubits" title="Permalink to this headline">¶</a></h2>
+<p>Normally, Alice would send these encoded qubits over a quantum channel, such as an optical fibre cable. However, since we don’t have quantum channels in the real world yet, we’ll store the circuits for each qubit in an array called <code class="docutils literal notranslate"><span class="pre">QUANTUM_CHANNEL</span></code> for the sake of demonstration. This would be like if Alice stored the qubits in a building and waited for Bob to pick them up. Of course, just like a fibre optic cable, this building is also a location where Eve might intercept the message.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">QUANTUM_CHANNEL</span> <span class="o">=</span> <span class="n">encoded_qubits</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="measurement">
+<h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this headline">¶</a></h2>
+<p>The next step is for Bob to receive the encoded qubits and measure them. First, he must choose his own set of random bases, just like Alice.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bob_bases</span> <span class="o">=</span> <span class="n">generate_random_bases</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="c1"># Bob randomly chooses a basis for each bit.</span>
+    
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The bases Bob is going to decode them in are: &quot;</span> <span class="o">+</span> <span class="n">bob_bases</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The bases Bob is going to decode them in are: XZZXZZZXXX...
+</pre></div>
+</div>
+</div>
+</div>
+<p>Then, Bob must measure each Qubit in the corresponding bases he chose. In Qiskit, this can be accomplished by adding a measurement gate to the circuit for each encoded qubit, and then executing it. However, IBM’s quantum computers measure in the <span class="math notranslate nohighlight">\(Z\)</span>-basis by default, so to measure in the <span class="math notranslate nohighlight">\(X\)</span>-basis, we must apply a Hadamard gate before our measurement gate.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">measure</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;This function measures each qubit in the corresponding basis chosen for it.&quot;&quot;&quot;</span>
+
+        <span class="n">bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> <span class="c1"># The results of measurements</span>
+
+        <span class="k">for</span> <span class="n">qubit</span><span class="p">,</span> <span class="n">basis</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">qubits</span><span class="p">,</span> <span class="n">bases</span><span class="p">):</span>
+
+            <span class="c1"># Add measurement depending on basis</span>
+            <span class="k">if</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;Z&quot;</span><span class="p">:</span>
+                <span class="n">qubit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+            <span class="k">elif</span> <span class="n">basis</span> <span class="o">==</span> <span class="s2">&quot;X&quot;</span><span class="p">:</span>
+                <span class="n">qubit</span><span class="o">.</span><span class="n">h</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+                <span class="n">qubit</span><span class="o">.</span><span class="n">measure</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">)</span>
+
+            <span class="c1"># Execute on Simulator</span>
+            <span class="n">simulator</span> <span class="o">=</span> <span class="n">Aer</span><span class="o">.</span><span class="n">get_backend</span><span class="p">(</span><span class="s1">&#39;qasm_simulator&#39;</span><span class="p">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">execute</span><span class="p">(</span><span class="n">qubit</span><span class="p">,</span> <span class="n">backend</span><span class="o">=</span><span class="n">simulator</span><span class="p">,</span> <span class="n">shots</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">result</span><span class="p">()</span>
+            <span class="n">counts</span> <span class="o">=</span> <span class="n">result</span><span class="o">.</span><span class="n">get_counts</span><span class="p">()</span>
+            <span class="n">measured_bit</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="n">counts</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">counts</span><span class="o">.</span><span class="n">get</span><span class="p">)</span> <span class="c1"># Max doesn&#39;t matter for simulator since there is only one shot.</span>
+
+            <span class="n">bits</span> <span class="o">+=</span> <span class="n">measured_bit</span>
+            
+        <span class="k">return</span> <span class="n">bits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubits_received</span> <span class="o">=</span> <span class="n">QUANTUM_CHANNEL</span> <span class="c1"># Receive qubits from quantum channel</span>
+<span class="n">bob_bits</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits_received</span><span class="p">,</span> <span class="n">bob_bases</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The first few bits Bob received are: &quot;</span> <span class="o">+</span> <span class="n">bob_bits</span><span class="p">[:</span><span class="mi">10</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;...&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The first few bits Bob received are: 0110111110...
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="comparison">
+<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this headline">¶</a></h2>
+<p>Now, Alice needs to tell Bob which bases she chose to encode her qubits in. She can tell him over any classical channel. The beauty of this protocol is that it doesn’t matter if Eve finds out which bases Alice used. Alice could even publicly post the list of bases she used on Twitter!</p>
+<a class="reference internal image-reference" href="_images/AnnounceBases.png" id="alice-announces-bases-on-twitter"><img alt="_images/AnnounceBases.png" id="alice-announces-bases-on-twitter" src="_images/AnnounceBases.png" style="width: 575px;" /></a>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">alice_bases</span> <span class="c1"># Alice tells Bob which bases she used</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>For each of the qubits where Alice and Bob chose different bases, there is a 50% chance Bob’s measurement returned the wrong qubit. For example, If Alice sent Bob a qubit in the <span class="math notranslate nohighlight">\(|+\rangle\)</span> state (i.e., a bit value of 0 encoded in the <span class="math notranslate nohighlight">\(X\)</span>-basis), and Bob measures in the <span class="math notranslate nohighlight">\(Z\)</span>-basis, there is a 50% chance he will get a <span class="math notranslate nohighlight">\(|0\rangle\)</span> and a 50% chance he will get a <span class="math notranslate nohighlight">\(|1\rangle\)</span>. Thus, every instance where their bases don’t match is useless to them, so Bob needs to find the bases they share in common.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the indices of the bases they share in common</span>
+<span class="n">common_bases</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="k">if</span> <span class="n">CLASSICAL_CHANNEL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">bob_bases</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The indices of the first 10 bases they share in common are: &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">common_bases</span><span class="p">[:</span><span class="mi">10</span><span class="p">]))</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>The indices of the first 10 bases they share in common are: [4, 5, 6, 7, 9, 10, 11, 19, 22, 24]
+</pre></div>
+</div>
+</div>
+</div>
+<p>Now that Bob knows the bases they share in common, he can discard all the rest of the bits, and only keep the ones that were measured in the same bases.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bob_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">bob_bits</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">common_bases</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>He also tells Alice which bases they had in common, so that she can discard the rest of the bits as well, keeping only the bits that were measured in the same bases that she encoded them in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">common_bases</span> <span class="c1"># Bob tells Alice which bases they shared in common</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alice_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">alice_bits</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">common_bases</span><span class="p">]</span> <span class="c1"># Alice keeps only the bits they shared in common</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since Alice and Bob are only keeping the bits measured in the bases they shared in common, they <em>should</em> have the same bits. To make sure this is the case, Alice will announce the first few bits that she has, and Bob should have the same ones. Of course, if Eve were trying to eavesdrop, she would also hear these first few bits, so Alice and Bob would have to discard them as well (after comparing to make sure they’re the same as what they expect).</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">alice_bits</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="c1"># Alice tells Bob the first 100 bits she has left.</span>
+
+<span class="c1"># Bob checks if they match the first 100 bits that he has</span>
+<span class="k">if</span> <span class="n">CLASSICAL_CHANNEL</span> <span class="o">==</span> <span class="n">bob_bits</span><span class="p">[:</span><span class="mi">100</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yep, Alice and Bob seem to have the same bits!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uh oh, at least one of the bits is different.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Yep, Alice and Bob seem to have the same bits!
+</pre></div>
+</div>
+</div>
+</div>
+<p>Since the first 100 bits are the same, Alice and Bob can be fairly certain that the remaining bits also match. Now, they need to discard the first 100 bits, since Eve may have been listening in on the classical channel and keeping track of what they are.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">alice_bits</span> <span class="o">=</span> <span class="n">alice_bits</span><span class="p">[</span><span class="mi">100</span><span class="p">:]</span> <span class="c1"># Alice discards the first 100 bits</span>
+<span class="n">bob_bits</span> <span class="o">=</span> <span class="n">bob_bits</span><span class="p">[</span><span class="mi">100</span><span class="p">:]</span> <span class="c1"># Alice discards the first 100 bits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>These remaining bits are the 🔑 key that Alice and Bob need to set up an encrypted communication channel! Now they can communicate without worrying about their messages being read by someone else!</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">key</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span> 
+<span class="k">for</span> <span class="n">bit</span> <span class="ow">in</span> <span class="n">alice_bits</span><span class="p">:</span> <span class="c1"># Or bob_bits, since both should be the same</span>
+    <span class="n">key</span> <span class="o">+=</span> <span class="n">bit</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Shhhhh, the key is:&quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">key</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Don&#39;t tell anyone!&quot;</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">The key is &quot;</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">key</span><span class="p">))</span> <span class="o">+</span> <span class="s2">&quot; bits long.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Shhhhh, the key is:
+010101101001011110110100011011001100000111010101000101011101001000110101100111101001101010000111000111000011001110100100000
+Don&#39;t tell anyone!
+
+The key is 123 bits long.
+</pre></div>
+</div>
+</div>
+</div>
+<p>The length of the key varies depending on how many bases they share in common.</p>
+</div>
+<div class="section" id="interception">
+<h2>Interception<a class="headerlink" href="#interception" title="Permalink to this headline">¶</a></h2>
+<hr class="docutils" />
+<p>So far, we’ve only looked at the case where no one spying on Alice and Bob. But what if someone like Eve tries to intercept their key? Let’s see what happens in this case.</p>
+<p>First, Alice performs the encoding step as usual: she randomly generates a string of bits and bases to encode them in. She then sends the encoded qubits along a quantum channel (fibre-optic cable) to Bob)</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Generating a random string of bits</span>
+<span class="n">alice_bits</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">):</span>
+    <span class="n">randBit</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span> <span class="c1"># Flip Coin</span>
+    <span class="n">alice_bits</span> <span class="o">+=</span> <span class="nb">str</span><span class="p">(</span><span class="n">randBit</span><span class="p">)</span> <span class="c1"># Add randomly chosen bit to the bit string.</span>
+    
+<span class="c1"># Alice randomly chooses a basis for each bit.</span>
+<span class="n">alice_bases</span> <span class="o">=</span> <span class="n">generate_random_bases</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span>
+
+<span class="c1"># Encode Alice&#39;s bits</span>
+<span class="n">encoded_qubits</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">alice_bits</span><span class="p">,</span> <span class="n">alice_bases</span><span class="p">)</span>
+
+<span class="n">QUANTUM_CHANNEL</span> <span class="o">=</span> <span class="n">encoded_qubits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="interception-by-eve">
+<h3>⚠️ Interception by Eve ⚠️<a class="headerlink" href="#interception-by-eve" title="Permalink to this headline">¶</a></h3>
+<p>This time, the qubits are intercepted by 😈 Eve. Let’s she what she would do. First, she would randomly choose a set of bases to measure the qubits in (since she has no idea which bases Alice used). Then, she’ll perform the measurements. This is similar to what Bob would normally do.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">qubits_intercepted</span> <span class="o">=</span> <span class="n">QUANTUM_CHANNEL</span> <span class="c1"># Intercept qubits</span>
+<span class="n">eve_bases</span> <span class="o">=</span> <span class="n">generate_random_bases</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="c1"># Generate a random set of bases</span>
+<span class="n">eve_bits</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits_intercepted</span><span class="p">,</span> <span class="n">eve_bases</span><span class="p">)</span> <span class="c1"># Measure the qubits</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Because of the No-Cloning Theorem of Quantum Mechanics, Eve cannot just copy the qubits over from the quantum channel. Thus, Bob will never receive the qubits, making it obvious to him and Alice that their message was intercepted. To prevent them from realizing what has happened, Eve must create her own decoy qubits to send to Bob. Since she has no idea which bases Alice used, she has to generate the bases randomly. This is similar to what Alice originally did when she encoded the qubits.</p>
+<p>Eve might generate an entirely new set of bases, or she might just use the same ones she used to measure the qubits. For simplicity, let’s assume the bases she used to intercept the qubits are the same bases she uses to encode her decoy qubits.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Eve encodes her decoy qubits and sends them along the quantum channel</span>
+<span class="n">QUANTUM_CHANNEL</span> <span class="o">=</span> <span class="n">encode</span><span class="p">(</span><span class="n">eve_bits</span><span class="p">,</span> <span class="n">eve_bases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>Bob then performs his usual steps: selecting a measurement bases and measuring the qubits. He doesn’t know that Eve has intercepted them yet.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">bob_bases</span> <span class="o">=</span> <span class="n">generate_random_bases</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="c1"># Bob randomly chooses a basis for each bit.</span>
+<span class="n">qubits_received</span> <span class="o">=</span> <span class="n">QUANTUM_CHANNEL</span> <span class="c1"># Receive qubits from quantum channel</span>
+<span class="n">bob_bits</span> <span class="o">=</span> <span class="n">measure</span><span class="p">(</span><span class="n">qubits_received</span><span class="p">,</span> <span class="n">bob_bases</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="id1">
+<h3>Comparison<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h3>
+<p>Again, Alice needs to tells Bob which bases she chose to encode her qubits in. She can tells him over any classical channel (perhaps even publicly on Twitter). Since this classical channel is public, Eve also knows which bases she used.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">alice_bases</span> <span class="c1"># Alice tells Bob which bases she used</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>As usual, Bob checks which bases they share in common. He discards the bits that were not measured in the same bases and keeps the ones that were measured in the same bases Alice encoded them in.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Store the indices of the bases they share in common</span>
+<span class="n">common_bases</span> <span class="o">=</span> <span class="p">[</span><span class="n">i</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">KEY_LENGTH</span><span class="p">)</span> <span class="k">if</span> <span class="n">CLASSICAL_CHANNEL</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">==</span><span class="n">bob_bases</span><span class="p">[</span><span class="n">i</span><span class="p">]]</span>
+<span class="n">bob_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">bob_bits</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">common_bases</span><span class="p">]</span>
+</pre></div>
+</div>
+</div>
+</div>
+<p>He then tells Alice the indices of the bases they shared in common so that she can do the same.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">common_bases</span> <span class="c1"># Bob tells Alice which bases they shared in common</span>
+<span class="n">alice_bits</span> <span class="o">=</span> <span class="p">[</span><span class="n">alice_bits</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="k">for</span> <span class="n">index</span> <span class="ow">in</span> <span class="n">common_bases</span><span class="p">]</span> <span class="c1"># Alice keeps only the bits they shared in common</span>
+</pre></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="waiiiiiiit-a-second">
+<h3>Waiiiiiiit a Second…<a class="headerlink" href="#waiiiiiiit-a-second" title="Permalink to this headline">¶</a></h3>
+<p>Since Alice and Bob are only keeping the bits measured in the bases they shared in common, they <em>should</em> have the same bits. To make sure this is the case, Alice will announce the first few bits that she has, and Bob should have the same ones.</p>
+<div class="cell docutils container">
+<div class="cell_input docutils container">
+<div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="n">CLASSICAL_CHANNEL</span> <span class="o">=</span> <span class="n">alice_bits</span><span class="p">[:</span><span class="mi">100</span><span class="p">]</span> <span class="c1"># Alice tells Bob the first 100 bits she has left.</span>
+
+<span class="c1"># Bob checks if they match the first 100 bits that he has</span>
+<span class="k">if</span> <span class="n">CLASSICAL_CHANNEL</span> <span class="o">==</span> <span class="n">bob_bits</span><span class="p">[:</span><span class="mi">100</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Yep, Alice and Bob seem to have the same bits!&quot;</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Uh oh, at least one of the bits is different.&quot;</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+<div class="cell_output docutils container">
+<div class="output stream highlight-myst-ansi notranslate"><div class="highlight"><pre><span></span>Uh oh, at least one of the bits is different.
+</pre></div>
+</div>
+</div>
+</div>
+<p>After comparing the first 100 bits, they see that their bits don’t match! Assuming that their is no noise in the quantum channel and quantum computers (which could cause errors), Alice and Bob can be certain that their message was intercepted! Thus, they can throw away all their bits and repeat the same protocol all over again. This time, they might use a different quantum channel in an effort to throw Eve off!</p>
+</div>
+</div>
+<hr class="docutils" />
+<div class="section" id="sources">
+<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>Qiskit Textbook: <a class="reference external" href="https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html">https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html</a></p></li>
+<li><p>Qubit by Qubit’s Introduction to Quantum Computing Course</p></li>
+</ul>
+</div>
+</div>
+
+    <script type="text/x-thebe-config">
+    {
+        requestKernel: true,
+        binderOptions: {
+            repo: "binder-examples/jupyter-stacks-datascience",
+            ref: "master",
+        },
+        codeMirrorConfig: {
+            theme: "abcdef",
+            mode: "python"
+        },
+        kernelOptions: {
+            kernelName: "python3",
+            path: "./."
+        },
+        predefinedOutput: true
+    }
+    </script>
+    <script>kernelName = 'python3'</script>
+
+              </div>
+              
+        
+        <div class='prev-next-bottom'>
+            
+    <a class='left-prev' id="prev-link" href="landing-page.html" title="previous page">Avneesh Verma</a>
+    <a class='right-next' id="next-link" href="Maxcut/maxcut.html" title="next page">Maxcut</a>
+
+        </div>
+        
+        </div>
+    </div>
+    <footer class="footer mt-5 mt-md-0">
+    <div class="container">
+      <p>
+        
+          By The Jupyter Book community<br/>
+        
+            &copy; Copyright 2020.<br/>
+      </p>
+    </div>
+  </footer>
+</main>
+
+
+      </div>
+    </div>
+
+    
+  <script src="_static/js/index.d3f166471bb80abb5163.js"></script>
+
+
+    
+  </body>
+</html>

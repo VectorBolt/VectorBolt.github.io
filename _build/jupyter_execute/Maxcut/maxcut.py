@@ -1,5 +1,13 @@
-# Maxcut
-___
+# Solving the Weighted Maxcut Problem from Scratch with QAOA
+
+## Introduction
+The [MaxCut problem](https://en.wikipedia.org/wiki/Maximum_cut) is a well-known optimization problem in which the nodes of a given undirected graph have to be divided in two sets (often referred as the set of “white” and “black” nodes, although in this notebook we'll use the colours "blue" and "red") such that the number of edges connecting a white node with a black node are maximized.
+
+![MaxCut Problem Visual](MaxcutWiki.png)
+
+Here, I've implemented the QAOA algorithm to solve the Maxcut problem for weighted graphs, and explained the algorithm along the way. This implementation of QAOA was made from scratch with Qiskit, without using the built in QAOA functionalities of Qiskit Aqua. 
+
+*I originally made this notebook as part of the screening task for the [Quantum Open Source Foundation](https://qosf.org)'s mentorship program, which I was fortunate enough to be accepted into! You can find original github repository I submitted [here](https://github.com/VectorBolt/MaxcutQOSF).*
 
 # IMPORTS
 from qiskit import *

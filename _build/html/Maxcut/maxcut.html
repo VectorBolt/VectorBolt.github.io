@@ -5,7 +5,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Maxcut &#8212; Avneesh Verma</title>
+    <title>Solving the Weighted Maxcut Problem from Scratch with QAOA &#8212; Avneesh Verma</title>
     
   <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
 
@@ -103,7 +103,7 @@
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   Maxcut
+   Solving the Weighted Maxcut Problem from Scratch with QAOA
   </a>
  </li>
 </ul>
@@ -194,6 +194,11 @@
         <nav id="bd-toc-nav">
             <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#introduction">
+   Introduction
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-our-cost-function">
    Creating our Cost function
   </a>
@@ -244,9 +249,14 @@
         
               <div>
                 
-  <div class="section" id="maxcut">
-<h1>Maxcut<a class="headerlink" href="#maxcut" title="Permalink to this headline">¶</a></h1>
-<hr class="docutils" />
+  <div class="section" id="solving-the-weighted-maxcut-problem-from-scratch-with-qaoa">
+<h1>Solving the Weighted Maxcut Problem from Scratch with QAOA<a class="headerlink" href="#solving-the-weighted-maxcut-problem-from-scratch-with-qaoa" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_cut">MaxCut problem</a> is a well-known optimization problem in which the nodes of a given undirected graph have to be divided in two sets (often referred as the set of “white” and “black” nodes, although in this notebook we’ll use the colours “blue” and “red”) such that the number of edges connecting a white node with a black node are maximized.</p>
+<p><img alt="MaxCut Problem Visual" src="../_images/MaxcutWiki.png" /></p>
+<p>Here, I’ve implemented the QAOA algorithm to solve the Maxcut problem for weighted graphs, and explained the algorithm along the way. This implementation of QAOA was made from scratch with Qiskit, without using the built in QAOA functionalities of Qiskit Aqua.</p>
+<p><em>I originally made this notebook as part of the screening task for the <a class="reference external" href="https://qosf.org">Quantum Open Source Foundation</a>’s mentorship program, which I was fortunate enough to be accepted into! You can find original github repository I submitted <a class="reference external" href="https://github.com/VectorBolt/MaxcutQOSF">here</a>.</em></p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># IMPORTS</span>
@@ -327,6 +337,7 @@
 </pre></div>
 </div>
 <img alt="../_images/maxcut_3_1.png" src="../_images/maxcut_3_1.png" />
+</div>
 </div>
 </div>
 <div class="section" id="creating-our-cost-function">

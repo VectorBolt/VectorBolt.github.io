@@ -340,3 +340,12 @@ nx.draw_networkx_edge_labels(CURRENT_GRAPH, pos, edge_labels=labels)
 So how does our QAOA circuit stack up against brute force, in terms of finding the correct answer? Well, we can use the ratio between the cut value from the QAOA's answer and the cut value of the correct answer. A higher number means that our QAOA did a better job. For small graphs, we can even get the exact correct answer, resulting in a ratio of 1.0!
 
 print(solution_cut_value / actual_solution_cut_value)
+
+## References
+
+1. Musty Thoughts. https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained
+2. Musty Thoughts. https://www.mustythoughts.com/vqas-how-do-they-work
+3. Jack Ceroni's code: https://lucaman99.github.io/new_blog/2020/mar16.html
+4. Ruslan Shaydulin's Tutorial [Part 1]: https://youtu.be/AOKM9BkweVU
+5. Ruslan Shaydulin's Tutorial [Part 2]: https://youtu.be/E0Sos_lR-kI
+6. Ruslan Shaydulin's Notebook: https://github.com/rsln-s/IEEE_QW_2020

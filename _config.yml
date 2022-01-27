@@ -1,5 +1,5 @@
 title: "Avneesh Verma"
-logo: Headshot.jpeg 
+logo: "Happy Headshot.jpg" 
 only_build_toc_files: true
 execute:
   execute_notebooks: "off"

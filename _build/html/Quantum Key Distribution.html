@@ -78,7 +78,7 @@
         <div class="navbar-brand-box">
 <a class="navbar-brand text-wrap" href="index.html">
   
-  <img src="_static/Headshot.jpeg" class="logo" alt="logo">
+  <img src="_static/Happy Headshot.jpg" class="logo" alt="logo">
   
   
   <h1 class="site-logo" id="site-title">Avneesh Verma</h1>
@@ -273,7 +273,7 @@
 <div class="section" id="introduction">
 <h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Let’s say <strong>Alice 💁‍♀️ and Bob 🙋‍♂️</strong> want to set up a secure communication channel, so that they can send private messages to each other without worrying about someone eavesdropping on their conversation.
-Unfortunately, it is virtually impossible to set up such a secure channel—there would always be some way of tapping into it and reading their messages.</p>
+Unfortunately, it is virtually impossible to set up such a secure channel—there would <em>always</em> be some way of tapping into it and reading their messages.</p>
 <p>That’s where cryptography comes in! If Alice wants to send a message to Bob, she can encrypt it in some way (say, by replacing every letter in the alphabet with a number).</p>
 <div class="math notranslate nohighlight">
 \[\begin{split}
@@ -284,14 +284,15 @@ C \rightarrow 3 \\
 Z \rightarrow 26
 \end{split}\]</div>
 <p>If Bob knows exactly how she encoded the message, he can decode it by reversing the encryption (replace every 1 with an <span class="math notranslate nohighlight">\(A\)</span>, every 2 with a <span class="math notranslate nohighlight">\(B\)</span>, etc.) However, if <strong>Eve 😈</strong> (or any other eavesdropper) were to  hack their communication channel, they would still have no idea what the message says! It would just look like a string of numbers to them!</p>
-<p>Of course, an encryption scheme like this would be pretty easy to crack—Eve could just guess that the numbers correspond to certain letters of the alphabet—but Alice and Bob could always use a more advanced technique instead. Many of these encryption techniques fall under the category of <strong>Symmetric Key Cryptography</strong>, in which each party is given a <em>key</em> 🔑 which contains the instructions for encrypting and decrypting the message. In our earlier example, this key would have contained the instructions to replace every letter of the alphabet with it’s corresponding index. This key could just be a string of bits (0s and 1s) encoding the instructions for encryption and decryption.</p>
+<p>Of course, an encryption scheme like this would be pretty easy to crack—Eve could just guess that the numbers correspond to certain letters of the alphabet—but Alice and Bob could always use a more advanced technique instead.</p>
+<p>Many of these encryption techniques fall under the category of <strong>Symmetric Key Cryptography</strong>, in which each party is given a <em>key</em> 🔑 which contains the instructions for encrypting and decrypting the message. In our earlier example, this key would have contained the instructions to replace every letter of the alphabet with a corresponding number. This key could just be a string of bits (0s and 1s) encoding the instructions for encryption and decryption.</p>
 <p>Let’s assume that, as long as Alice and Bob share a secret key, they are able to securely encrypt their messages in a way that would be impossible to decrypt without this key. So, if Eve taps into their communication channel and reads their messages, she would have no idea what the messages say, since she would not know the key used to encrypt and decrypt them.</p>
 </div>
 <div class="section" id="what-is-bb84">
 <h2>What is BB84?<a class="headerlink" href="#what-is-bb84" title="Permalink to this headline">¶</a></h2>
 <p>Of course, in order to actually set up this encrypted channel, Alice and Bob actually need to communicate in secret to decide what key to use. But this kind of secure communication requires an encrypted channel, which is what we’re trying to create in the first place!</p>
 <p>Ideally, Alice and Bob could meet up in the real world, and Alice could whisper the key into Bob’s ear. But it would be impractical to meet up everytime they wanted to setup a private message channel—imagine if you had to meet someone in person before being able to email them at all!</p>
-<p>The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is <em>not</em> intercepted, have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key <em>is</em> intercepted, they can just repeat the process again and again until they have a key that no one else knows.</p>
+<p>The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is <em>not</em> intercepted, then they have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key <em>is</em> intercepted, they can just repeat the process again and again until they have a key that no one else knows.</p>
 <p>However, there are certain requirements for this protocol to work:</p>
 <ul class="simple">
 <li><p>Both Alice and Bob must have access to their own quantum computer.</p></li>
@@ -311,7 +312,7 @@ Since it is impossible to ensure perfect security, we must assume that any of th
 <li><p>Bob analyzes these first few bits to determine whether Eve tapped into their quantum communication channel and intercepted Alice’s qubits.</p></li>
 <li><p>If Eve did <em>not</em> intercept the qubits, they consider all of the qubits that they happened to choose the same bases for, and use those bits as their key. If Eve <em>did</em> intercept the qubits, they repeat the process all over again.</p></li>
 </ol>
-<p>Now, let’s break down what each of those steps entails. <strong>First, we’ll take a look at how it works if the message is not intercepted by Eve</strong>.</p>
+<p>Now, let’s break down what each of those steps entails. I’ll include some Qiskit code for those who want to code the protocol to get a better understanding of it.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Importing Qiskit</span>
@@ -322,6 +323,7 @@ Since it is impossible to ensure perfect security, we must assume that any of th
 </div>
 </div>
 </div>
+<p><strong>First, we’ll take a look at how it works if the message is not intercepted by Eve</strong>.</p>
 </div>
 <div class="section" id="encoding">
 <h2>Encoding<a class="headerlink" href="#encoding" title="Permalink to this headline">¶</a></h2>
@@ -329,13 +331,13 @@ Since it is impossible to ensure perfect security, we must assume that any of th
 Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis can be considered a possible bases. If a vector points directly upward, it is said to be in the state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, and if it points downward, it is said to be in the state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. The vertical axis is called the <span class="math notranslate nohighlight">\(Z\)</span>-axis. In the <span class="math notranslate nohighlight">\(Z\)</span>-basis, we can encode a 0 as <span class="math notranslate nohighlight">\(|0\rangle\)</span> (shown in the image on the left) and a 1 as <span class="math notranslate nohighlight">\(|1\rangle\)</span> (shown in the image on the right).</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/Quantum Key Distribution_6_0.png" src="_images/Quantum Key Distribution_6_0.png" />
+<img alt="_images/Quantum Key Distribution_7_0.png" src="_images/Quantum Key Distribution_7_0.png" />
 </div>
 </div>
 <p>Another basis we can use is the <span class="math notranslate nohighlight">\(X\)</span>-basis, which lies on the <span class="math notranslate nohighlight">\(X\)</span>-axis. Here, the image on the left represents the <span class="math notranslate nohighlight">\(|+\rangle\)</span> state, which can represent a bit value of 0, and the image on the right represents the <span class="math notranslate nohighlight">\(|-\rangle\)</span> state, which can represent a bit value of 1.</p>
 <div class="cell tag_remove-input docutils container">
 <div class="cell_output docutils container">
-<img alt="_images/Quantum Key Distribution_8_0.png" src="_images/Quantum Key Distribution_8_0.png" />
+<img alt="_images/Quantum Key Distribution_9_0.png" src="_images/Quantum Key Distribution_9_0.png" />
 </div>
 </div>
 <p>Now, we have two different ways to encode a 0, and two different ways to encode a 1!</p>
@@ -367,7 +369,7 @@ Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis ca
 </div>
 </div>
 </div>
-<p>Then, Alice randomly chooses a basis of each bit (either the <span class="math notranslate nohighlight">\(Z\)</span>-basis or the <span class="math notranslate nohighlight">\(X\)</span>-basis). She can do this by flipping a coin and writing down <span class="math notranslate nohighlight">\(Z\)</span> everytime she lands on heads and <span class="math notranslate nohighlight">\(X\)</span> everytime she lands on tails.</p>
+<p>Then, Alice randomly chooses a basis of each bit (either the <span class="math notranslate nohighlight">\(Z\)</span>-basis or the <span class="math notranslate nohighlight">\(X\)</span>-basis). She can do this by flipping a coin and writing down <span class="math notranslate nohighlight">\(Z\)</span> each time she lands on heads and <span class="math notranslate nohighlight">\(X\)</span> each time she lands on tails.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_random_bases</span><span class="p">(</span><span class="n">num_of_bases</span><span class="p">):</span>

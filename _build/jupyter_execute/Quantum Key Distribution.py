@@ -2,7 +2,7 @@
 
 ## Introduction
 Let's say **Alice 💁‍♀️ and Bob 🙋‍♂️** want to set up a secure communication channel, so that they can send private messages to each other without worrying about someone eavesdropping on their conversation.
-Unfortunately, it is virtually impossible to set up such a secure channel—there would always be some way of tapping into it and reading their messages.
+Unfortunately, it is virtually impossible to set up such a secure channel—there would *always* be some way of tapping into it and reading their messages.
 
 That's where cryptography comes in! If Alice wants to send a message to Bob, she can encrypt it in some way (say, by replacing every letter in the alphabet with a number). 
 
@@ -16,7 +16,9 @@ $$
 
 If Bob knows exactly how she encoded the message, he can decode it by reversing the encryption (replace every 1 with an $A$, every 2 with a $B$, etc.) However, if **Eve 😈** (or any other eavesdropper) were to  hack their communication channel, they would still have no idea what the message says! It would just look like a string of numbers to them!
 
-Of course, an encryption scheme like this would be pretty easy to crack—Eve could just guess that the numbers correspond to certain letters of the alphabet—but Alice and Bob could always use a more advanced technique instead. Many of these encryption techniques fall under the category of **Symmetric Key Cryptography**, in which each party is given a *key* 🔑 which contains the instructions for encrypting and decrypting the message. In our earlier example, this key would have contained the instructions to replace every letter of the alphabet with it's corresponding index. This key could just be a string of bits (0s and 1s) encoding the instructions for encryption and decryption.
+Of course, an encryption scheme like this would be pretty easy to crack—Eve could just guess that the numbers correspond to certain letters of the alphabet—but Alice and Bob could always use a more advanced technique instead. 
+
+Many of these encryption techniques fall under the category of **Symmetric Key Cryptography**, in which each party is given a *key* 🔑 which contains the instructions for encrypting and decrypting the message. In our earlier example, this key would have contained the instructions to replace every letter of the alphabet with a corresponding number. This key could just be a string of bits (0s and 1s) encoding the instructions for encryption and decryption.
 
 Let's assume that, as long as Alice and Bob share a secret key, they are able to securely encrypt their messages in a way that would be impossible to decrypt without this key. So, if Eve taps into their communication channel and reads their messages, she would have no idea what the messages say, since she would not know the key used to encrypt and decrypt them.
 
@@ -25,7 +27,7 @@ Of course, in order to actually set up this encrypted channel, Alice and Bob act
 
 Ideally, Alice and Bob could meet up in the real world, and Alice could whisper the key into Bob's ear. But it would be impractical to meet up everytime they wanted to setup a private message channel—imagine if you had to meet someone in person before being able to email them at all!
 
-The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is *not* intercepted, have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key *is* intercepted, they can just repeat the process again and again until they have a key that no one else knows.
+The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is *not* intercepted, then they have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key *is* intercepted, they can just repeat the process again and again until they have a key that no one else knows.
 
 However, there are certain requirements for this protocol to work:
 * Both Alice and Bob must have access to their own quantum computer.
@@ -42,12 +44,14 @@ Here's how the protocol works in a nutshell:
 5. Bob analyzes these first few bits to determine whether Eve tapped into their quantum communication channel and intercepted Alice's qubits.
 6. If Eve did *not* intercept the qubits, they consider all of the qubits that they happened to choose the same bases for, and use those bits as their key. If Eve *did* intercept the qubits, they repeat the process all over again.
 
-Now, let's break down what each of those steps entails. **First, we'll take a look at how it works if the message is not intercepted by Eve**.
+Now, let's break down what each of those steps entails. I'll include some Qiskit code for those who want to code the protocol to get a better understanding of it. 
 
 # Importing Qiskit
 from qiskit import *
 from qiskit.tools.visualization import plot_bloch_multivector
 import random
+
+**First, we'll take a look at how it works if the message is not intercepted by Eve**.
 
 ## Encoding
 The first step is for Alice to choose a string of bits and bases to encode them in. What do we mean by "bases"?
@@ -87,7 +91,7 @@ for i in range(KEY_LENGTH):
     
 print("The bits Alice is going to send are: " + alice_bits[:10] + "...")
 
-Then, Alice randomly chooses a basis of each bit (either the $Z$-basis or the $X$-basis). She can do this by flipping a coin and writing down $Z$ everytime she lands on heads and $X$ everytime she lands on tails.
+Then, Alice randomly chooses a basis of each bit (either the $Z$-basis or the $X$-basis). She can do this by flipping a coin and writing down $Z$ each time she lands on heads and $X$ each time she lands on tails.
 
 def generate_random_bases(num_of_bases):
     """This function selects a random basis for each bit"""

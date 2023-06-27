@@ -1,5 +1,11 @@
-title: "Avneesh Verma"
+title: "Avneesh Verma's Personal Website"
+author: "Avneesh Verma"
+copyright: "2023"
 logo: "Happy Headshot.jpg" 
 only_build_toc_files: true
 execute:
   execute_notebooks: "off"
+html:
+  favicon: "VectorBolt Square.jpg"
+html_theme_options:
+  show_navbar_powered_by: false

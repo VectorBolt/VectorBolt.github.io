@@ -1,4 +1,5 @@
-- file: landing-page
-
-- file: "Quantum Key Distribution"
+format: jb-article
+root: landing-page
+sections:
+- file: Quantum Key Distribution
 - file: Maxcut/maxcut

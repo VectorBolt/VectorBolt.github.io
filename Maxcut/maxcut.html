@@ -1,263 +1,342 @@
 
+
 <!DOCTYPE html>
 
-<html>
+
+<html lang="en" >
+
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Solving the Weighted Maxcut Problem from Scratch with QAOA &#8212; Avneesh Verma</title>
-    
-  <link rel="stylesheet" href="../_static/css/index.f658d18f9b420779cfdf24aa0a7e2d77.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    
-  <link rel="stylesheet"
-    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
-  <link rel="preload" as="font" type="font/woff2" crossorigin
-    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+    <title>Solving the Weighted Maxcut Problem from Scratch with QAOA &#8212; Avneesh Verma&#39;s Personal Website</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+  </script>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
 
-    
-      
-  <link rel="stylesheet"
-    href="../_static/vendor/open-sans_all/1.44.1/index.css">
-  <link rel="stylesheet"
-    href="../_static/vendor/lato_latin-ext/1.44.1/index.css">
+  
+  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
 
-    
-    <link rel="stylesheet" href="../_static/sphinx-book-theme.37f24b989f4638ff9c27c22dc7559d4f.css" type="text/css" />
-    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
     <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
     <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
     <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
     <link rel="stylesheet" type="text/css" href="../_static/my-style.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-main.c949a650a448cc0ae9fd3441c0e17fb0.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/panels-variables.06eb56fa6e07937060861dad626602ad.css" />
-    
-  <link rel="preload" as="script" href="../_static/js/index.d3f166471bb80abb5163.js">
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+  
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
 
-    <script id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
     <script src="../_static/jquery.js"></script>
     <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../_static/doctools.js"></script>
-    <script src="../_static/language_data.js"></script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/clipboard.min.js"></script>
     <script src="../_static/copybutton.js"></script>
-    <script >var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
-    <script src="../_static/sphinx-book-theme.7d483ff0a819d6edff12ce0b1ead3928.js"></script>
-    <script async="async" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.7/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <script type="text/x-mathjax-config">MathJax.Hub.Config({"tex2jax": {"inlineMath": [["\\(", "\\)"]], "displayMath": [["\\[", "\\]"]], "processRefs": false, "processEnvironments": false}})</script>
-    <script async="async" src="https://unpkg.com/thebelab@latest/lib/index.js"></script>
-    <script >
-        const thebe_selector = ".thebe"
-        const thebe_selector_input = "pre"
-        const thebe_selector_output = ".output"
-    </script>
+    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script>let toggleHintShow = 'Click to show';</script>
+    <script>let toggleHintHide = 'Click to hide';</script>
+    <script>let toggleOpenOnPrint = 'true';</script>
+    <script src="../_static/togglebutton.js"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script src="../_static/design-tabs.js"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
+const thebe_selector = ".thebe,.cell"
+const thebe_selector_input = "pre"
+const thebe_selector_output = ".output, .cell_output"
+</script>
     <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'Maxcut/maxcut';</script>
+    <link rel="shortcut icon" href="../_static/VectorBolt Square.jpg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Quantum Key Distribution (BB84 Protocol)" href="../Quantum%20Key%20Distribution.html" />
-
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="docsearch:language" content="en" />
-
-
-
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="en"/>
   </head>
-  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="80">
-    
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
 
-    <div class="container-xl">
-      <div class="row">
-          
-<div class="col-12 col-md-3 bd-sidebar site-navigation show" id="site-navigation">
+  
+  
+  <a class="skip-link" href="#main-content">Skip to main content</a>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__primary"
+          id="__primary"/>
+  <label class="overlay overlay-primary" for="__primary"></label>
+  
+  <input type="checkbox"
+          class="sidebar-toggle"
+          name="__secondary"
+          id="__secondary"/>
+  <label class="overlay overlay-secondary" for="__secondary"></label>
+  
+  <div class="search-button__wrapper">
+    <div class="search-button__overlay"></div>
+    <div class="search-button__search-container">
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         id="search-input"
+         placeholder="Search this book..."
+         aria-label="Search this book..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form></div>
+  </div>
+  
+    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
+    </nav>
+  
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      <div class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
     
-        <div class="navbar-brand-box">
-<a class="navbar-brand text-wrap" href="../index.html">
+    
+    
+    
+  </div>
   
-  <img src="../_static/Happy Headshot.jpg" class="logo" alt="logo">
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+  
+
+<a class="navbar-brand logo" href="../landing-page.html">
   
   
-  <h1 class="site-logo" id="site-title">Avneesh Verma</h1>
   
+  
+    
+    
+      
+    
+    
+    <img src="../_static/Happy Headshot.jpg" class="logo__image only-light" alt="Logo image"/>
+    <script>document.write(`<img src="../_static/Happy Headshot.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        
+        <ul class="nav bd-sidenav bd-sidenav__home-link">
+            <li class="toctree-l1">
+                <a class="reference internal" href="../landing-page.html">
+                    Avneesh Verma
+                </a>
+            </li>
+        </ul>
+        <ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../Quantum%20Key%20Distribution.html">Quantum Key Distribution (BB84 Protocol)</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Solving the Weighted Maxcut Problem from Scratch with QAOA</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><label class="sidebar-toggle primary-toggle btn btn-sm" for="__primary" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</label></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Download this page">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/Maxcut/maxcut.ipynb" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Download source file"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.ipynb</span>
 </a>
-</div><form class="bd-search d-flex align-items-center" action="../search.html" method="get">
-  <i class="icon fas fa-search"></i>
-  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search this book..." aria-label="Search this book..." autocomplete="off" >
-</form>
-<nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
-    <ul class="nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../landing-page.html">
-   Avneesh Verma
-  </a>
- </li>
-</ul>
-<ul class="current nav sidenav_l1">
- <li class="toctree-l1">
-  <a class="reference internal" href="../Quantum%20Key%20Distribution.html">
-   Quantum Key Distribution (BB84 Protocol)
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   Solving the Weighted Maxcut Problem from Scratch with QAOA
-  </a>
- </li>
-</ul>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Print to PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
 
-</nav> <!-- To handle the deprecated key -->
-
-<div class="navbar_extra_footer">
-  Powered by <a href="https://jupyterbook.org">Jupyter Book</a>
-</div>
-
-</div>
-
-
-          
-
-
-          
-<main class="col py-md-3 pl-md-4 bd-content overflow-auto" role="main">
-    
-    <div class="topbar container-xl fixed-top">
-    <div class="topbar-contents row">
-        <div class="col-12 col-md-3 bd-topbar-whitespace site-navigation show"></div>
-        <div class="col pl-md-4 topbar-main">
-            
-            <button id="navbar-toggler" class="navbar-toggler ml-0" type="button" data-toggle="collapse"
-                data-toggle="tooltip" data-placement="bottom" data-target=".site-navigation" aria-controls="navbar-menu"
-                aria-expanded="true" aria-label="Toggle navigation" aria-controls="site-navigation"
-                title="Toggle navigation" data-toggle="tooltip" data-placement="left">
-                <i class="fas fa-bars"></i>
-                <i class="fas fa-arrow-left"></i>
-                <i class="fas fa-arrow-up"></i>
-            </button>
-            
-            
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn" aria-label="Download this page"><i
-            class="fas fa-download"></i></button>
-
-    <div class="dropdown-buttons">
-        <!-- ipynb file if we had a myst markdown file -->
-        
-        <!-- Download raw file -->
-        <a class="dropdown-buttons" href="../_sources/Maxcut/maxcut.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Download source file" data-toggle="tooltip"
-                data-placement="left">.ipynb</button></a>
-        <!-- Download PDF via print -->
-        <button type="button" id="download-print" class="btn btn-secondary topbarbtn" title="Print to PDF"
-            onClick="window.print()" data-toggle="tooltip" data-placement="left">.pdf</button>
-    </div>
-</div>
-
-            <!-- Source interaction buttons -->
-
-
-            <!-- Full screen (wrap in <a> to have style consistency -->
-            <a class="full-screen-button"><button type="button" class="btn btn-secondary topbarbtn" data-toggle="tooltip"
-                    data-placement="bottom" onclick="toggleFullScreen()" aria-label="Fullscreen mode"
-                    title="Fullscreen mode"><i
-                        class="fas fa-expand"></i></button></a>
-
-            <!-- Launch buttons -->
-
-<div class="dropdown-buttons-trigger">
-    <button id="dropdown-buttons-trigger" class="btn btn-secondary topbarbtn"
-        aria-label="Launch interactive content"><i class="fas fa-rocket"></i></button>
-    <div class="dropdown-buttons">
-        
-        <a class="binder-button" href="https://mybinder.org/v2/gh/executablebooks/jupyter-book/master?urlpath=tree/Maxcut/maxcut.ipynb"><button type="button"
-                class="btn btn-secondary topbarbtn" title="Launch Binder" data-toggle="tooltip"
-                data-placement="left"><img class="binder-button-logo"
-                    src="../_static/images/logo_binder.svg"
-                    alt="Interact on binder">Binder</button></a>
-        
-        
-        
-        
-    </div>
-</div>
-
-        </div>
-
-        <!-- Table of contents -->
-        <div class="d-none d-md-block col-md-2 bd-toc show">
-            
-        <div class="tocsection onthispage pt-5 pb-3">
-            <i class="fas fa-list"></i> Contents
-        </div>
-        <nav id="bd-toc-nav">
-            <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#introduction">
-   Introduction
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#creating-our-cost-function">
-   Creating our Cost function
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#mapping-our-cost-function-to-a-hamiltonian">
-     Mapping our Cost Function to a Hamiltonian
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#the-mixer-hamiltonian">
-     The Mixer Hamiltonian
-    </a>
-   </li>
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
   </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#constructing-unitary-operators">
-   Constructing Unitary Operators
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#turning-our-unitary-operators-into-gates">
-     Turning our Unitary Operators into Gates
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#unitary-operator-circuit-demo">
-     Unitary Operator Circuit Demo
-    </a>
-   </li>
-  </ul>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#classical-optimization">
-   Classical Optimization
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#references">
-   References
-  </a>
- </li>
-</ul>
+</div>
 
-        </nav>
-        
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Fullscreen mode"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+<script>
+document.write(`
+  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
+    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
+    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  </button>
+`);
+</script>
+
+<script>
+document.write(`
+  <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+  </button>
+`);
+</script>
+<label class="sidebar-toggle secondary-toggle btn btn-sm" for="__secondary"title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</label>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Solving the Weighted Maxcut Problem from Scratch with QAOA</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contents </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-our-cost-function">Creating our Cost function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-our-cost-function-to-a-hamiltonian">Mapping our Cost Function to a Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mixer-hamiltonian">The Mixer Hamiltonian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-unitary-operators">Constructing Unitary Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-our-unitary-operators-into-gates">Turning our Unitary Operators into Gates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-operator-circuit-demo">Unitary Operator Circuit Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-optimization">Classical Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+            </nav>
         </div>
     </div>
 </div>
-    <div id="main-content" class="row">
-        <div class="col-12 col-md-9 pl-md-3 pr-md-0">
-        
-              <div>
+
+              
                 
-  <div class="section" id="solving-the-weighted-maxcut-problem-from-scratch-with-qaoa">
-<h1>Solving the Weighted Maxcut Problem from Scratch with QAOA<a class="headerlink" href="#solving-the-weighted-maxcut-problem-from-scratch-with-qaoa" title="Permalink to this headline">¶</a></h1>
-<div class="section" id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<div id="searchbox"></div>
+                <article class="bd-article" role="main">
+                  
+  <section class="tex2jax_ignore mathjax_ignore" id="solving-the-weighted-maxcut-problem-from-scratch-with-qaoa">
+<h1>Solving the Weighted Maxcut Problem from Scratch with QAOA<a class="headerlink" href="#solving-the-weighted-maxcut-problem-from-scratch-with-qaoa" title="Permalink to this heading">#</a></h1>
+<section id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_cut">MaxCut problem</a> is a well-known optimization problem in which the nodes of a given undirected graph have to be divided in two sets (often referred as the set of “white” and “black” nodes, although in this notebook we’ll use the colours “blue” and “red”) such that the number of edges connecting a white node with a black node are maximized.</p>
 <p><img alt="MaxCut Problem Visual" src="../_images/MaxcutWiki.png" /></p>
 <p>Here, I’ve implemented the QAOA algorithm to solve the Maxcut problem for weighted graphs, and explained the algorithm along the way. This implementation of QAOA was made from scratch with Qiskit, without using the built in QAOA functionalities of Qiskit Aqua.</p>
@@ -286,7 +365,7 @@
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">generate_random_connected_graph</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">,</span> <span class="n">max_weight</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Generate a connected graph with a random number of nodes, edges, and weights&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Generate a connected graph with a random number of nodes, edges, and weights&quot;&quot;&quot;</span>
     <span class="n">num_edges</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="n">num_nodes</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">math</span><span class="o">.</span><span class="n">floor</span><span class="p">(</span><span class="n">num_nodes</span><span class="o">*</span><span class="p">(</span><span class="n">num_nodes</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">))</span> <span class="c1"># Randomly choose the number of edges</span>
     <span class="c1"># Create a list of numbers up to the number of nodes, and shuffle it </span>
     <span class="n">nodes</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">range</span><span class="p">(</span><span class="n">num_nodes</span><span class="p">))</span>
@@ -341,12 +420,12 @@
  (0, 6): Text(-0.3094843981483835, -0.29077682644387237, &#39;2.99&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_3_1.png" src="../_images/maxcut_3_1.png" />
+<img alt="../_images/ddb0f3dde4c7204e870698e16184019d3460f913f8e47796afad82d40bd49d10.png" src="../_images/ddb0f3dde4c7204e870698e16184019d3460f913f8e47796afad82d40bd49d10.png" />
 </div>
 </div>
-</div>
-<div class="section" id="creating-our-cost-function">
-<h2>Creating our Cost function<a class="headerlink" href="#creating-our-cost-function" title="Permalink to this headline">¶</a></h2>
+</section>
+<section id="creating-our-cost-function">
+<h2>Creating our Cost function<a class="headerlink" href="#creating-our-cost-function" title="Permalink to this heading">#</a></h2>
 <hr class="docutils" />
 <p>How do we determine whether the edge between two nodes has been cut? We’ll give each node belonging to one subset a value of 1, and each node belonging to the other subset a value of -1. We want to create a function <span class="math notranslate nohighlight">\(C(s)\)</span> such that <span class="math notranslate nohighlight">\(C(s) = 1\)</span> if the nodes belong to opposite subsets (increasing the “score”) and <span class="math notranslate nohighlight">\(C(s) = 0\)</span> if the nodes belong to opposite subsets (which would not increase the score).</p>
 <p>Let’s figure out how to do this. Let <span class="math notranslate nohighlight">\(s_i\)</span> and <span class="math notranslate nohighlight">\(s_j\)</span> represent the values of two nodes (either 1 or -1). Notice that if both nodes belong to the same subset, then <span class="math notranslate nohighlight">\(s_is_j = 1\)</span>, whereas if they belong to opposite subsets, <span class="math notranslate nohighlight">\(s_is_j = -1\)</span>. However, since we want our function to <em>increase</em> the score when <span class="math notranslate nohighlight">\(s_i \neq s_j\)</span>, we’ll multiply by result by <span class="math notranslate nohighlight">\(-1\)</span>.</p>
@@ -354,8 +433,8 @@
 $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}(1-s_is_j)\)</span>$</p>
 <p>Notice that this gives us exactly what we want: if <span class="math notranslate nohighlight">\(s_i \neq s_j\)</span>, then <span class="math notranslate nohighlight">\(C(s) = 1\)</span>, and if <span class="math notranslate nohighlight">\(s_i = s_j\)</span>, then <span class="math notranslate nohighlight">\(C(s) = 0\)</span>. However, we’re not quite done. This function only gives us the result for one node. To find the total “score” of our solution, we need to sum over all neighboring nodes:
 $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}{(1-s_is_j)}\)</span><span class="math notranslate nohighlight">\( Where \)</span>E$ is the set of edges. <em>This</em> is the cost function that we are trying to maximize.</p>
-<div class="section" id="mapping-our-cost-function-to-a-hamiltonian">
-<h3>Mapping our Cost Function to a Hamiltonian<a class="headerlink" href="#mapping-our-cost-function-to-a-hamiltonian" title="Permalink to this headline">¶</a></h3>
+<section id="mapping-our-cost-function-to-a-hamiltonian">
+<h3>Mapping our Cost Function to a Hamiltonian<a class="headerlink" href="#mapping-our-cost-function-to-a-hamiltonian" title="Permalink to this heading">#</a></h3>
 <p>To solve our problem on a quantum computer, we encode our problem in a Cost Hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>. First, let’s reformulate our cost function like this:</p>
 <div class="math notranslate nohighlight">
 \[C(s) = \frac{1}{2}\sum_{i,j \in E}{(-s_is_j) + const}\]</div>
@@ -368,16 +447,16 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}
 <p>There’s just <em>one</em> more thing we need to do: the above hamiltonian only works for an unweighted graph. To generalize it for weighted maxcut problems, we multiply by the weight of the edge, <span class="math notranslate nohighlight">\(w_{ij}\)</span>. Our final cost hamiltonian looks like this:</p>
 <div class="math notranslate nohighlight">
 \[H_C = \sum_{i,j \in E}{-\sigma_i^z\sigma_j^zw_{ij}}\]</div>
-</div>
-<div class="section" id="the-mixer-hamiltonian">
-<h3>The Mixer Hamiltonian<a class="headerlink" href="#the-mixer-hamiltonian" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="the-mixer-hamiltonian">
+<h3>The Mixer Hamiltonian<a class="headerlink" href="#the-mixer-hamiltonian" title="Permalink to this heading">#</a></h3>
 <p>In addition to our cost hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>, we’ll also need another Hamiltonian <span class="math notranslate nohighlight">\(H_B\)</span> (often called the “Mixer Hamiltonian”) which will be used to escape local minimums. This can be any Hamiltonian that doesn’t commute with <span class="math notranslate nohighlight">\(H_C\)</span>. The one we’re going to use is a simple Pauli X operator:</p>
 <div class="math notranslate nohighlight">
 \[H_B = \sum_{i \in V}\sigma_i^x\]</div>
-</div>
-</div>
-<div class="section" id="constructing-unitary-operators">
-<h2>Constructing Unitary Operators<a class="headerlink" href="#constructing-unitary-operators" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="constructing-unitary-operators">
+<h2>Constructing Unitary Operators<a class="headerlink" href="#constructing-unitary-operators" title="Permalink to this heading">#</a></h2>
 <hr class="docutils" />
 <p>Alright, we have our hamiltonians, but what do we do with them? What we do in QAOA is implement paramterized unitary operators corresponding to our hamiltonians. With our Cost Hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>. we create an operator <span class="math notranslate nohighlight">\(U(H_C, \gamma) = e^{-i \gamma H_C}\)</span>, and with our Mixer Hamiltonian <span class="math notranslate nohighlight">\(H_B\)</span>, we create an operator <span class="math notranslate nohighlight">\(U(H_B, \beta) = e^{-i \beta H_B}\)</span>.</p>
 <p>Whoa, hold on, what does all this exponentiated hamiltonian stuff mean? The section “Background: Quantum Mechanics” in <a class="reference external" href="https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained">this article</a> does a great job explaining it. Basically, we can think of <span class="math notranslate nohighlight">\(e^{-itH}\)</span> as the evolution of the state of the quantum system for time <span class="math notranslate nohighlight">\(t\)</span>, as described by the hamiltonian <span class="math notranslate nohighlight">\(H\)</span>. Our unitaries <span class="math notranslate nohighlight">\(e^{-i \gamma H_C}\)</span> and <span class="math notranslate nohighlight">\(e^{-i \beta H_B}\)</span> do something like this for the hamiltonians <span class="math notranslate nohighlight">\(H_C\)</span> and <span class="math notranslate nohighlight">\(H_C\)</span>. We’ve constructed our hamiltonians in such a way that each of our hamiltonian can be thought of as a matrix that rotates the qubits of our system around a particular axis of the bloch sphere. Instead of evolving the state for a time <span class="math notranslate nohighlight">\(t\)</span>, we’re evolving the state by rotating the qubits by an angle proportional to our parameters <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. To solve the maxcut problem, all we need to do is find the optimal parameters.</p>
@@ -388,8 +467,8 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}
 <p>Overall, the QAOA circuit looks like this:</p>
 <p><img alt="QAOA Circuit Diagram" src="../_images/qaoa_circuit.png" /></p>
 <p>The repetition of applying our cost and mixer unitaries in an alternating fashion is called Trotterization. It a is a way of approximating the adiabatic pathway.</p>
-<div class="section" id="turning-our-unitary-operators-into-gates">
-<h3>Turning our Unitary Operators into Gates<a class="headerlink" href="#turning-our-unitary-operators-into-gates" title="Permalink to this headline">¶</a></h3>
+<section id="turning-our-unitary-operators-into-gates">
+<h3>Turning our Unitary Operators into Gates<a class="headerlink" href="#turning-our-unitary-operators-into-gates" title="Permalink to this heading">#</a></h3>
 <p>To actually create our quantum circuit, we need to be able to express our unitary operators as a series of gates. How do we do that?</p>
 <p>First, let’s figure out how to translate are cost unitary to quantum gates. Remember that our cost unitary is <span class="math notranslate nohighlight">\(e^{-i\gamma H_C} = e^{-i\gamma (-\sigma_i^z\sigma_j^zw_{ij})}\)</span></p>
 <p>One gate that will be useful is the <span class="math notranslate nohighlight">\(R_z\)</span> gate, which rotates the state around the <span class="math notranslate nohighlight">\(z\)</span> axis of the bloch sphere by an angle <span class="math notranslate nohighlight">\(\frac{\theta}{2}\)</span>:</p>
@@ -408,7 +487,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="c1"># Hamiltonians</span>
 <span class="k">def</span> <span class="nf">create_cost_unitary</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">gamma</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implement the cost unitary on a quantum circuit&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implement the cost unitary on a quantum circuit&quot;&quot;&quot;</span>
     
     <span class="n">cost_unitary</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Cost Unitary&quot;</span><span class="p">)</span>
     <span class="n">weights</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">get_edge_attributes</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;weight&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">values</span><span class="p">()</span> <span class="c1"># Get weights from graph</span>
@@ -423,7 +502,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
     <span class="k">return</span> <span class="n">cost_unitary</span>
 
 <span class="k">def</span> <span class="nf">create_mixer_unitary</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">beta</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Implement the mixer unitary on a quantum circuit&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Implement the mixer unitary on a quantum circuit&quot;&quot;&quot;</span>
     <span class="n">mixer_unitary</span> <span class="o">=</span> <span class="n">QuantumCircuit</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">),</span> <span class="n">name</span><span class="o">=</span><span class="s2">&quot;Mixer Unitary&quot;</span><span class="p">)</span>
     
     <span class="c1"># Apply unitary for each node</span>
@@ -435,9 +514,9 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="unitary-operator-circuit-demo">
-<h3>Unitary Operator Circuit Demo<a class="headerlink" href="#unitary-operator-circuit-demo" title="Permalink to this headline">¶</a></h3>
+</section>
+<section id="unitary-operator-circuit-demo">
+<h3>Unitary Operator Circuit Demo<a class="headerlink" href="#unitary-operator-circuit-demo" title="Permalink to this heading">#</a></h3>
 <p>This is what it would look like if we applied the cost unitary for every edge on our test graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -448,7 +527,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_10_0.png" src="../_images/maxcut_10_0.png" />
+<img alt="../_images/bd9b3ce7bd5c22c5c6eb343a78c41e4f5de766be12485277ce6b2fd0f639bb40.png" src="../_images/bd9b3ce7bd5c22c5c6eb343a78c41e4f5de766be12485277ce6b2fd0f639bb40.png" />
 </div>
 </div>
 <p>And this is what the applying the mixer unitary would look like for each node.</p>
@@ -461,14 +540,14 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_12_0.png" src="../_images/maxcut_12_0.png" />
+<img alt="../_images/070b357901e378ee57598ea19118c3f3e5c24c376b57b09577dd4cfae306e198.png" src="../_images/070b357901e378ee57598ea19118c3f3e5c24c376b57b09577dd4cfae306e198.png" />
 </div>
 </div>
 <p>Finally, we can create our QAOA circuit. The number of qubits and is the same as the number of nodes in our graph. We start by applying a layer of Hadamard gates to produce our initial superposition state <span class="math notranslate nohighlight">\(|s\rangle\)</span>. Then, we alternate applying our cost and mixer unitaries. Each time we apply a layer of cost and mixer unitaries corresponds to one iteration.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">create_qaoa_circuit</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">params</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Create the full QAOA circuit for the graph with the given parameters.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Create the full QAOA circuit for the graph with the given parameters.&quot;&quot;&quot;</span>
     <span class="n">num_of_iterations</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">params</span><span class="p">)</span><span class="o">/</span><span class="mi">2</span><span class="p">)</span>
     <span class="n">gammas</span> <span class="o">=</span> <span class="n">params</span><span class="p">[:</span><span class="n">num_of_iterations</span><span class="p">]</span> <span class="c1"># Let the first half of the params list be gamma parameters</span>
     <span class="n">betas</span> <span class="o">=</span> <span class="n">params</span><span class="p">[</span><span class="n">num_of_iterations</span><span class="p">:]</span> <span class="c1"># Let the second half of the params list be beta parameters</span>
@@ -499,7 +578,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">get_cut_size</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">bit_string</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    This function calculates the value of the cut associated with a given bitstring,</span>
 <span class="sd">    meaning the weighted sum of all of the edges connecting two nodes belonging to opposite subsets.</span>
 <span class="sd">    Since the classical optimizer is designed to compute a minimum instead of a maximum,</span>
@@ -512,14 +591,14 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
         <span class="n">start_node</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="n">end_node</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">edge</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
         <span class="k">if</span> <span class="n">bit_string</span><span class="p">[</span><span class="n">start_node</span><span class="p">]</span> <span class="o">!=</span> <span class="n">bit_string</span><span class="p">[</span><span class="n">end_node</span><span class="p">]:</span>
-            <span class="sd">&quot;&quot;&quot;Since the classical optimizer is designed to compute a minimum instead of a maximum,</span>
+<span class="w">            </span><span class="sd">&quot;&quot;&quot;Since the classical optimizer is designed to compute a minimum instead of a maximum,</span>
 <span class="sd">            decrement the cut size instead of incrementing it.</span>
 <span class="sd">            &quot;&quot;&quot;</span>
             <span class="n">cut_size</span> <span class="o">-=</span> <span class="mi">1</span><span class="o">*</span><span class="n">weight</span>
     <span class="k">return</span> <span class="n">cut_size</span>
 
 <span class="k">def</span> <span class="nf">get_expectation</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="n">counts</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;Return the weighted average of the results of the quantum circuit.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Return the weighted average of the results of the quantum circuit.&quot;&quot;&quot;</span>
     <span class="n">energy</span> <span class="o">=</span> <span class="mi">0</span> 
     <span class="n">total_executions</span> <span class="o">=</span> <span class="mi">0</span>
     <span class="k">for</span> <span class="n">bit_string</span><span class="p">,</span> <span class="n">frequency</span> <span class="ow">in</span> <span class="n">counts</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
@@ -554,17 +633,17 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_18_0.png" src="../_images/maxcut_18_0.png" />
-<img alt="../_images/maxcut_18_1.png" src="../_images/maxcut_18_1.png" />
-<img alt="../_images/maxcut_18_2.png" src="../_images/maxcut_18_2.png" />
-<img alt="../_images/maxcut_18_3.png" src="../_images/maxcut_18_3.png" />
-<img alt="../_images/maxcut_18_4.png" src="../_images/maxcut_18_4.png" />
+<img alt="../_images/2cd9948d286b33a2110e2251def0fa64cd8bf14c7ea068e7e3aab85e0c559426.png" src="../_images/2cd9948d286b33a2110e2251def0fa64cd8bf14c7ea068e7e3aab85e0c559426.png" />
+<img alt="../_images/b8592fb760b48bbf54086a9a1f2edfa9ac419bdd8fa8f054a8161c640dbab2fc.png" src="../_images/b8592fb760b48bbf54086a9a1f2edfa9ac419bdd8fa8f054a8161c640dbab2fc.png" />
+<img alt="../_images/1678b44cd614ea7919fe245379a3c0820533931de31eec481b45818a3326a9f7.png" src="../_images/1678b44cd614ea7919fe245379a3c0820533931de31eec481b45818a3326a9f7.png" />
+<img alt="../_images/5201a62b5efe184ae0a73d23567096dc09be146b9305648fd6de335f41570039.png" src="../_images/5201a62b5efe184ae0a73d23567096dc09be146b9305648fd6de335f41570039.png" />
+<img alt="../_images/7a0cec773ecf415b9d08990200bd46d76241b02a5814841047b7ae0f5d5d4d0c.png" src="../_images/7a0cec773ecf415b9d08990200bd46d76241b02a5814841047b7ae0f5d5d4d0c.png" />
 </div>
 </div>
-</div>
-</div>
-<div class="section" id="classical-optimization">
-<h2>Classical Optimization<a class="headerlink" href="#classical-optimization" title="Permalink to this headline">¶</a></h2>
+</section>
+</section>
+<section id="classical-optimization">
+<h2>Classical Optimization<a class="headerlink" href="#classical-optimization" title="Permalink to this heading">#</a></h2>
 <hr class="docutils" />
 <p>We define an objective function that the SciPy optimizer can find the optimal parameters for. The function returns the expectation of the QAOA circuit. The goal of the optimizer we choose will be to minimize this expectation value.</p>
 <div class="cell docutils container">
@@ -617,7 +696,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 <div class="cell_output docutils container">
-<img alt="../_images/maxcut_24_0.png" src="../_images/maxcut_24_0.png" />
+<img alt="../_images/29b212d468c46e983e34f446c3be8d538ed26c9ed165ec2dbb28c8c9160d639c.png" src="../_images/29b212d468c46e983e34f446c3be8d538ed26c9ed165ec2dbb28c8c9160d639c.png" />
 </div>
 </div>
 <div class="cell docutils container">
@@ -712,7 +791,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 <div class="cell docutils container">
 <div class="cell_input docutils container">
 <div class="highlight-ipython3 notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">color_graph</span><span class="p">(</span><span class="n">bit_string</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;This function determines how to color a graph for a given bitstring.&quot;&quot;&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;This function determines how to color a graph for a given bitstring.&quot;&quot;&quot;</span>
     <span class="n">colors</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">bit</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">bit_string</span><span class="p">):</span>
         <span class="k">if</span> <span class="n">bit</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
@@ -739,7 +818,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
  (2, 4): Text(-0.11949405461248812, -0.5866079359523575, &#39;3.03&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_29_1.png" src="../_images/maxcut_29_1.png" />
+<img alt="../_images/4a94fe6e2c0642ef750b5226dde6e3a70bd663db8a1ee87da7d18b1d698c1a01.png" src="../_images/4a94fe6e2c0642ef750b5226dde6e3a70bd663db8a1ee87da7d18b1d698c1a01.png" />
 </div>
 </div>
 <p>How does this compare to the actual solution? To check, we’ll use a brute force approach to find the solution classically.</p>
@@ -782,7 +861,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
  (2, 4): Text(0.11978415878415191, -0.5770333968823671, &#39;3.03&#39;)}
 </pre></div>
 </div>
-<img alt="../_images/maxcut_33_1.png" src="../_images/maxcut_33_1.png" />
+<img alt="../_images/21e0fbf4733c033a29c6b33a665cc6658b411da2bab5a97190085ead568fdca5.png" src="../_images/21e0fbf4733c033a29c6b33a665cc6658b411da2bab5a97190085ead568fdca5.png" />
 </div>
 </div>
 <p>So how does our QAOA circuit stack up against brute force, in terms of finding the correct answer? Well, we can use the ratio between the cut value from the QAOA’s answer and the cut value of the correct answer. A higher number means that our QAOA did a better job. For small graphs, we can even get the exact correct answer, resulting in a ratio of 1.0!</p>
@@ -798,19 +877,19 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </div>
 </div>
-</div>
-<div class="section" id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this headline">¶</a></h2>
-<ol class="simple">
+</section>
+<section id="references">
+<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<ol class="arabic simple">
 <li><p>Musty Thoughts. <a class="reference external" href="https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained">https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained</a></p></li>
 <li><p>Musty Thoughts. <a class="reference external" href="https://www.mustythoughts.com/vqas-how-do-they-work">https://www.mustythoughts.com/vqas-how-do-they-work</a></p></li>
 <li><p>Jack Ceroni’s code: <a class="reference external" href="https://lucaman99.github.io/new_blog/2020/mar16.html">https://lucaman99.github.io/new_blog/2020/mar16.html</a></p></li>
 <li><p>Ruslan Shaydulin’s Tutorial [Part 1]: <a class="reference external" href="https://youtu.be/AOKM9BkweVU">https://youtu.be/AOKM9BkweVU</a></p></li>
 <li><p>Ruslan Shaydulin’s Tutorial [Part 2]: <a class="reference external" href="https://youtu.be/E0Sos_lR-kI">https://youtu.be/E0Sos_lR-kI</a></p></li>
-<li><p>Ruslan Shaydulin’s Notebook: <a class="reference external" href="https://github.com/rsln-s/IEEE_QW_2020">https://github.com/rsln-s/IEEE_QW_2020</a></p></li>
+<li><p>Ruslan Shaydulin’s Notebook: <a class="github reference external" href="https://github.com/rsln-s/IEEE_QW_2020">rsln-s/IEEE_QW_2020</a></p></li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
     <script type="text/x-thebe-config">
     {
@@ -824,7 +903,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
             mode: "python"
         },
         kernelOptions: {
-            kernelName: "python3",
+            name: "python3",
             path: "./Maxcut"
         },
         predefinedOutput: true
@@ -832,37 +911,108 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
     </script>
     <script>kernelName = 'python3'</script>
 
-              </div>
+                </article>
               
-        
-        <div class='prev-next-bottom'>
-            
-    <a class='left-prev' id="prev-link" href="../Quantum%20Key%20Distribution.html" title="previous page">Quantum Key Distribution (BB84 Protocol)</a>
 
-        </div>
-        
-        </div>
-    </div>
-    <footer class="footer mt-5 mt-md-0">
-    <div class="container">
-      <p>
-        
-          By The Jupyter Book community<br/>
-        
-            &copy; Copyright 2020.<br/>
-      </p>
-    </div>
-  </footer>
-</main>
-
-
+              
+              
+                <footer class="bd-footer-article">
+                  
+<div class="footer-article-items footer-article__inner">
+  
+    <div class="footer-article-item"><!-- Previous / next buttons -->
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../Quantum%20Key%20Distribution.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">previous</p>
+        <p class="prev-next-title">Quantum Key Distribution (BB84 Protocol)</p>
       </div>
+    </a>
+</div></div>
+  
+</div>
+
+                </footer>
+              
+            </div>
+            
+            
+              
+                <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contents
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction">Introduction</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#creating-our-cost-function">Creating our Cost function</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#mapping-our-cost-function-to-a-hamiltonian">Mapping our Cost Function to a Hamiltonian</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-mixer-hamiltonian">The Mixer Hamiltonian</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-unitary-operators">Constructing Unitary Operators</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#turning-our-unitary-operators-into-gates">Turning our Unitary Operators into Gates</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#unitary-operator-circuit-demo">Unitary Operator Circuit Demo</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#classical-optimization">Classical Optimization</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#references">References</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+By Avneesh Verma
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  <p class="copyright">
+    
+      © Copyright 2023.
+      <br/>
+    
+  </p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
     </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
 
-    
-  <script src="../_static/js/index.d3f166471bb80abb5163.js"></script>
-
-
-    
+  <footer class="bd-footer">
+  </footer>
   </body>
 </html>

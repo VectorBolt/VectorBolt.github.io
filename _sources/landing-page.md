@@ -1,7 +1,7 @@
-# Avneesh Verma
+# Hi, I'm Avneesh!
 
-Hello, my name is Avneesh! Welcome to my personal website! 
-Here, you'll find what I've been working on, as well as some of my notebooks explaining quantum algorithms.
+Welcome to my personal website! 
+Here, you'll find what I've been working on, as well as some of my Jupyter notebooks explaining quantum algorithms.
 Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](https://www.linkedin.com/in/avneesh-verma/), [YouTube Channel](https://www.youtube.com/channel/UCN3uzbzGgzp75Cl2Ai73QSA), [Portfolio](https://tks.life/profile/avneesh.verma#about), and [Medium](https://medium.com/@avneeshverma03).
 
 ## What I'm Working On

@@ -14,12 +14,18 @@ Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](ht
 * Working on latching systems and brakes.
 * Working with CATIA Part Design (CAD) and Ansys Workbench (Simulations).
 
+## Projects
+**Summer Research @ National University of Singapore**
+* Worked at the Optical Materials and Devices Laboratory at NUS under Prof. Andrew Bettiol
+* Built an experimental setup, based on Optical Coherence Tomography (OCT), that could measure the thicknesses of SiO2 layers on silicon wafers with micrometer resolution using lasers.
+* Assembled optomechanical equipment and developed a LabVIEW program to control the equipment during experiments.
+
+
 **Logistics Optimization with Quantum Computing @ QWorld**
 *([Research Project RP-009](https://qworld.net/research-projects/))*
-* Evaluating QUBO formulations of the Vehicle Routing Problem and its variants, with a focus on the Capacitated Vehicle Routing Problem with Time Windows (CVRPTW)
-* Benchmarking the performance of these QUBO formulations using quantum annealers.
+* Evaluated QUBO formulations of the Vehicle Routing Problem and its variants, with a focus on the Capacitated Vehicle Routing Problem with Time Windows (CVRPTW)
+* Benchmarked the performance of these QUBO formulations using quantum annealers.
 
-## Projects
 **QOSF Mentorship Program**  [\[GitHub Repo\]](https://github.com/VGGatGitHub/QOSF-cohort3)
 * Explored quantum algorithms to solve the Vehicle Routing Problem using D-Wave Annealers and Qiskit.
 * Compared the techniques and advantages of various QUBO formulations.

@@ -5,14 +5,20 @@ Here, you'll find what I've been working on, as well as some of my Jupyter noteb
 Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](https://www.linkedin.com/in/avneesh-verma/), [YouTube Channel](https://www.youtube.com/channel/UCN3uzbzGgzp75Cl2Ai73QSA), [Portfolio](https://tks.life/profile/avneesh.verma#about), and [Medium](https://medium.com/@avneeshverma03).
 
 ## What I'm Working On
-**Engineering Science @ University of Toronto**
-* Pursuing my undergrad in Engineering Science at UofT.
-* Currently learning the fundamentals of structural engineering, fundamental calculus, programming, engineering design, linear algebra, MATLAB, and classical mechanics.
+**Balloon Astrophyics Group @ University of Toronto**
+* Working on the engineering design of GigaBIT (the Gigapixel Balloon-borne Imaging Telescope), a 1.5m visible/near-UV telescope which will fly in the stratosphere on a NASA superpressure balloon. GigaBIT will have the same resolution as the Hubble Space Telescope, but a field of view 80 times as large, and will act as an important complement to more recent space telescopes such as Euclid and the James Webb Space telescope, which observe primarily in the near Infrared. 
+* Developing the pointing solution code in Rust, which serves as the gondola's state estimation software. 
+* Working under the supervision of Prof. C. Barth Netterfield, known for his work on the BOOMERanG experiment, which was crucial in providing high-resolution measurements of the CMB. This experiment helped determine the geometry and age of the universe, as well as its composition.
 
 **Mechanical Engineering @ Blue Sky Solar Racing**
-* Member of the mechanical engineering subteam of UofT's Solar Racing Design Team.
-* Working on latching systems and brakes.
-* Working with CATIA Part Design (CAD) and Ansys Workbench (Simulations).
+* Senior member of the mechanical engineering subteam of UofT's Solar Racing Design Team.
+* Developed a Python program to automate the stress calculation process for bolts in Blue Sky’s future generation solar cars, saving time that the mechanical team would have to spend analyzing the safety of the over 100 bolts that are expected to be used in the Blue Sky’s next solar car.
+* Assembled mechanical systems, such as brakes, latches, and suspension, in Blue Sky’s Gen XI solar car prior to testing sessions, allowing the team to evaluate the performance of these systems and identify design flaws before the biennial race in Australia.
+* Designing the rear suspension of Blue Sky's next generation solar car using CATIA, and conducting finite-element analysis with ANSYS Mechanical to verify structural integrity and optimize topology.
+
+**Engineering Physics @ University of Toronto**
+* Pursuing my undergrad in the most rigorous engineering program at Canada's top university.
+
 
 ## Projects
 **Summer Research @ National University of Singapore**

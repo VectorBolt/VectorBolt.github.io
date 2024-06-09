@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="../" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Solving the Weighted Maxcut Problem from Scratch with QAOA &#8212; Avneesh Verma&#39;s Personal Website</title>
   
@@ -15,58 +14,54 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="../_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="../_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="../_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="../_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="../_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="../_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
-    <link rel="stylesheet" href="../_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/my-style.css" />
-    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="../_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="../_static/my-style.css?v=f1d1652c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="../_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-    <script src="../_static/jquery.js"></script>
-    <script src="../_static/underscore.js"></script>
-    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="../_static/doctools.js"></script>
-    <script src="../_static/sphinx_highlight.js"></script>
-    <script src="../_static/clipboard.min.js"></script>
-    <script src="../_static/copybutton.js"></script>
-    <script src="../_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="../_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="../_static/doctools.js?v=9a2dae69"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="../_static/togglebutton.js"></script>
+    <script src="../_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="../_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="../_static/sphinx-thebe.js"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="../_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Maxcut/maxcut';</script>
-    <link rel="shortcut icon" href="../_static/VectorBolt Square.jpg"/>
+    <link rel="icon" href="../_static/VectorBolt Square.jpg"/>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="prev" title="Quantum Key Distribution (BB84 Protocol)" href="../Quantum%20Key%20Distribution.html" />
@@ -79,19 +74,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -113,12 +112,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -133,9 +140,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="../landing-page.html">
+  
   
   
   
@@ -145,18 +154,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="../_static/Happy Headshot.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="../_static/Happy Headshot.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="../_static/Happy Headshot.jpg" class="logo__image only-light" alt="Avneesh Verma's Personal Website - Home"/>
+    <script>document.write(`<img src="../_static/Happy Headshot.jpg" class="logo__image only-dark" alt="Avneesh Verma's Personal Website - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="../landing-page.html">
-                    Avneesh Verma
+                    Hi, I’m Avneesh!
                 </a>
             </li>
         </ul>
@@ -178,7 +198,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -187,7 +207,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -269,20 +289,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -331,12 +353,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="solving-the-weighted-maxcut-problem-from-scratch-with-qaoa">
-<h1>Solving the Weighted Maxcut Problem from Scratch with QAOA<a class="headerlink" href="#solving-the-weighted-maxcut-problem-from-scratch-with-qaoa" title="Permalink to this heading">#</a></h1>
+<h1>Solving the Weighted Maxcut Problem from Scratch with QAOA<a class="headerlink" href="#solving-the-weighted-maxcut-problem-from-scratch-with-qaoa" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>The <a class="reference external" href="https://en.wikipedia.org/wiki/Maximum_cut">MaxCut problem</a> is a well-known optimization problem in which the nodes of a given undirected graph have to be divided in two sets (often referred as the set of “white” and “black” nodes, although in this notebook we’ll use the colours “blue” and “red”) such that the number of edges connecting a white node with a black node are maximized.</p>
 <p><img alt="MaxCut Problem Visual" src="../_images/MaxcutWiki.png" /></p>
 <p>Here, I’ve implemented the QAOA algorithm to solve the Maxcut problem for weighted graphs, and explained the algorithm along the way. This implementation of QAOA was made from scratch with Qiskit, without using the built in QAOA functionalities of Qiskit Aqua.</p>
@@ -425,7 +447,7 @@ document.write(`
 </div>
 </section>
 <section id="creating-our-cost-function">
-<h2>Creating our Cost function<a class="headerlink" href="#creating-our-cost-function" title="Permalink to this heading">#</a></h2>
+<h2>Creating our Cost function<a class="headerlink" href="#creating-our-cost-function" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
 <p>How do we determine whether the edge between two nodes has been cut? We’ll give each node belonging to one subset a value of 1, and each node belonging to the other subset a value of -1. We want to create a function <span class="math notranslate nohighlight">\(C(s)\)</span> such that <span class="math notranslate nohighlight">\(C(s) = 1\)</span> if the nodes belong to opposite subsets (increasing the “score”) and <span class="math notranslate nohighlight">\(C(s) = 0\)</span> if the nodes belong to opposite subsets (which would not increase the score).</p>
 <p>Let’s figure out how to do this. Let <span class="math notranslate nohighlight">\(s_i\)</span> and <span class="math notranslate nohighlight">\(s_j\)</span> represent the values of two nodes (either 1 or -1). Notice that if both nodes belong to the same subset, then <span class="math notranslate nohighlight">\(s_is_j = 1\)</span>, whereas if they belong to opposite subsets, <span class="math notranslate nohighlight">\(s_is_j = -1\)</span>. However, since we want our function to <em>increase</em> the score when <span class="math notranslate nohighlight">\(s_i \neq s_j\)</span>, we’ll multiply by result by <span class="math notranslate nohighlight">\(-1\)</span>.</p>
@@ -434,7 +456,7 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}(1-s_is_j)\)</sp
 <p>Notice that this gives us exactly what we want: if <span class="math notranslate nohighlight">\(s_i \neq s_j\)</span>, then <span class="math notranslate nohighlight">\(C(s) = 1\)</span>, and if <span class="math notranslate nohighlight">\(s_i = s_j\)</span>, then <span class="math notranslate nohighlight">\(C(s) = 0\)</span>. However, we’re not quite done. This function only gives us the result for one node. To find the total “score” of our solution, we need to sum over all neighboring nodes:
 $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}{(1-s_is_j)}\)</span><span class="math notranslate nohighlight">\( Where \)</span>E$ is the set of edges. <em>This</em> is the cost function that we are trying to maximize.</p>
 <section id="mapping-our-cost-function-to-a-hamiltonian">
-<h3>Mapping our Cost Function to a Hamiltonian<a class="headerlink" href="#mapping-our-cost-function-to-a-hamiltonian" title="Permalink to this heading">#</a></h3>
+<h3>Mapping our Cost Function to a Hamiltonian<a class="headerlink" href="#mapping-our-cost-function-to-a-hamiltonian" title="Link to this heading">#</a></h3>
 <p>To solve our problem on a quantum computer, we encode our problem in a Cost Hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>. First, let’s reformulate our cost function like this:</p>
 <div class="math notranslate nohighlight">
 \[C(s) = \frac{1}{2}\sum_{i,j \in E}{(-s_is_j) + const}\]</div>
@@ -449,14 +471,14 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}
 \[H_C = \sum_{i,j \in E}{-\sigma_i^z\sigma_j^zw_{ij}}\]</div>
 </section>
 <section id="the-mixer-hamiltonian">
-<h3>The Mixer Hamiltonian<a class="headerlink" href="#the-mixer-hamiltonian" title="Permalink to this heading">#</a></h3>
+<h3>The Mixer Hamiltonian<a class="headerlink" href="#the-mixer-hamiltonian" title="Link to this heading">#</a></h3>
 <p>In addition to our cost hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>, we’ll also need another Hamiltonian <span class="math notranslate nohighlight">\(H_B\)</span> (often called the “Mixer Hamiltonian”) which will be used to escape local minimums. This can be any Hamiltonian that doesn’t commute with <span class="math notranslate nohighlight">\(H_C\)</span>. The one we’re going to use is a simple Pauli X operator:</p>
 <div class="math notranslate nohighlight">
 \[H_B = \sum_{i \in V}\sigma_i^x\]</div>
 </section>
 </section>
 <section id="constructing-unitary-operators">
-<h2>Constructing Unitary Operators<a class="headerlink" href="#constructing-unitary-operators" title="Permalink to this heading">#</a></h2>
+<h2>Constructing Unitary Operators<a class="headerlink" href="#constructing-unitary-operators" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
 <p>Alright, we have our hamiltonians, but what do we do with them? What we do in QAOA is implement paramterized unitary operators corresponding to our hamiltonians. With our Cost Hamiltonian <span class="math notranslate nohighlight">\(H_C\)</span>. we create an operator <span class="math notranslate nohighlight">\(U(H_C, \gamma) = e^{-i \gamma H_C}\)</span>, and with our Mixer Hamiltonian <span class="math notranslate nohighlight">\(H_B\)</span>, we create an operator <span class="math notranslate nohighlight">\(U(H_B, \beta) = e^{-i \beta H_B}\)</span>.</p>
 <p>Whoa, hold on, what does all this exponentiated hamiltonian stuff mean? The section “Background: Quantum Mechanics” in <a class="reference external" href="https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained">this article</a> does a great job explaining it. Basically, we can think of <span class="math notranslate nohighlight">\(e^{-itH}\)</span> as the evolution of the state of the quantum system for time <span class="math notranslate nohighlight">\(t\)</span>, as described by the hamiltonian <span class="math notranslate nohighlight">\(H\)</span>. Our unitaries <span class="math notranslate nohighlight">\(e^{-i \gamma H_C}\)</span> and <span class="math notranslate nohighlight">\(e^{-i \beta H_B}\)</span> do something like this for the hamiltonians <span class="math notranslate nohighlight">\(H_C\)</span> and <span class="math notranslate nohighlight">\(H_C\)</span>. We’ve constructed our hamiltonians in such a way that each of our hamiltonian can be thought of as a matrix that rotates the qubits of our system around a particular axis of the bloch sphere. Instead of evolving the state for a time <span class="math notranslate nohighlight">\(t\)</span>, we’re evolving the state by rotating the qubits by an angle proportional to our parameters <span class="math notranslate nohighlight">\(\gamma\)</span> and <span class="math notranslate nohighlight">\(\beta\)</span>. To solve the maxcut problem, all we need to do is find the optimal parameters.</p>
@@ -468,7 +490,7 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}
 <p><img alt="QAOA Circuit Diagram" src="../_images/qaoa_circuit.png" /></p>
 <p>The repetition of applying our cost and mixer unitaries in an alternating fashion is called Trotterization. It a is a way of approximating the adiabatic pathway.</p>
 <section id="turning-our-unitary-operators-into-gates">
-<h3>Turning our Unitary Operators into Gates<a class="headerlink" href="#turning-our-unitary-operators-into-gates" title="Permalink to this heading">#</a></h3>
+<h3>Turning our Unitary Operators into Gates<a class="headerlink" href="#turning-our-unitary-operators-into-gates" title="Link to this heading">#</a></h3>
 <p>To actually create our quantum circuit, we need to be able to express our unitary operators as a series of gates. How do we do that?</p>
 <p>First, let’s figure out how to translate are cost unitary to quantum gates. Remember that our cost unitary is <span class="math notranslate nohighlight">\(e^{-i\gamma H_C} = e^{-i\gamma (-\sigma_i^z\sigma_j^zw_{ij})}\)</span></p>
 <p>One gate that will be useful is the <span class="math notranslate nohighlight">\(R_z\)</span> gate, which rotates the state around the <span class="math notranslate nohighlight">\(z\)</span> axis of the bloch sphere by an angle <span class="math notranslate nohighlight">\(\frac{\theta}{2}\)</span>:</p>
@@ -479,7 +501,7 @@ $<span class="math notranslate nohighlight">\(C(s) = \frac{1}{2}\sum_{i,j \in E}
 e^{-i\frac{\theta}{2}} &amp; 0 \\
 0 &amp; e^{i\frac{\theta}{2}}
 \end{bmatrix}\end{split}\]</div>
-<p>Of course, this is only a one-qubit gate. How do we implement the two-qubit unitary <span class="math notranslate nohighlight">\(e^{-i\frac{\theta}{2}\sigma_i^z\sigma_j^z}\)</span>? One way to see what the effect of this unitary is to observe the effect of applying it to all computational basis states, and replacing the Pauli Z operators with their eigenvalues corresponding to the computational basis states. This slide from Ruslan Shaydulin <a class="reference external" href="https://www.youtube.com/watch?v=AOKM9BkweVU&amp;list=WL&amp;index=21&amp;t=948s">tutorial</a> explains it well: <img alt="Effect of unitary on all computational basis states" src="../_images/gate_mapping.png" /></p>
+<p>Of course, this is only a one-qubit gate. How do we implement the two-qubit unitary <span class="math notranslate nohighlight">\(e^{-i\frac{\theta}{2}\sigma_i^z\sigma_j^z}\)</span>? One way to see what the effect of this unitary is to observe the effect of applying it to all computational basis states, and replacing the Pauli Z operators with their eigenvalues corresponding to the computational basis states. This slide from Ruslan Shaydulin <a class="reference external" href="https://www.youtube.com/watch?v=AOKM9BkweVU&amp;amp;list=WL&amp;amp;index=21&amp;amp;t=948s">tutorial</a> explains it well: <img alt="Effect of unitary on all computational basis states" src="../_images/gate_mapping.png" /></p>
 <p>We can use the CNOT gate to check the parity of qubit <span class="math notranslate nohighlight">\(i\)</span> and qubit <span class="math notranslate nohighlight">\(j\)</span>, then apply our <span class="math notranslate nohighlight">\(R_z\)</span> gate, and then add another CNOT to undo the effect of the first CNOT. The resulting circuit looks like this: <img alt="Cost Unitary Circuit" src="../_images/gate_mapping2.png" />
 In this case, <span class="math notranslate nohighlight">\(t\)</span> represents the parameter we pass in (either <span class="math notranslate nohighlight">\(\gamma\)</span> or <span class="math notranslate nohighlight">\(\beta\)</span>). The reason we multiply by two is because the <span class="math notranslate nohighlight">\(R_z(\theta)\)</span> gate rotates by <span class="math notranslate nohighlight">\(\frac{\theta}{2}\)</span>, so multiplying by 2 allows us to rotate by <span class="math notranslate nohighlight">\(\gamma\)</span> or <span class="math notranslate nohighlight">\(\beta\)</span>. Also, since we are solving for weighted graphs, we multiply <span class="math notranslate nohighlight">\(\gamma\)</span> by the weight of the edge. Thus, we end up with an <span class="math notranslate nohighlight">\(R_z(2\gamma w_{ij})\)</span> gate sandwiched between two CNOTs.</p>
 <p>Finally, we need to translate our mixer unitary into gates. This one is easy: just as single-qubit <span class="math notranslate nohighlight">\(R_x(2\beta)\)</span> gate. (We’re multiplying by 2 for the same reason we did this for our cost unitary).</p>
@@ -516,7 +538,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </section>
 <section id="unitary-operator-circuit-demo">
-<h3>Unitary Operator Circuit Demo<a class="headerlink" href="#unitary-operator-circuit-demo" title="Permalink to this heading">#</a></h3>
+<h3>Unitary Operator Circuit Demo<a class="headerlink" href="#unitary-operator-circuit-demo" title="Link to this heading">#</a></h3>
 <p>This is what it would look like if we applied the cost unitary for every edge on our test graph.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -643,7 +665,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </section>
 </section>
 <section id="classical-optimization">
-<h2>Classical Optimization<a class="headerlink" href="#classical-optimization" title="Permalink to this heading">#</a></h2>
+<h2>Classical Optimization<a class="headerlink" href="#classical-optimization" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
 <p>We define an objective function that the SciPy optimizer can find the optimal parameters for. The function returns the expectation of the QAOA circuit. The goal of the optimizer we choose will be to minimize this expectation value.</p>
 <div class="cell docutils container">
@@ -879,7 +901,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 </div>
 </section>
 <section id="references">
-<h2>References<a class="headerlink" href="#references" title="Permalink to this heading">#</a></h2>
+<h2>References<a class="headerlink" href="#references" title="Link to this heading">#</a></h2>
 <ol class="arabic simple">
 <li><p>Musty Thoughts. <a class="reference external" href="https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained">https://www.mustythoughts.com/quantum-approximate-optimization-algorithm-explained</a></p></li>
 <li><p>Musty Thoughts. <a class="reference external" href="https://www.mustythoughts.com/vqas-how-do-they-work">https://www.mustythoughts.com/vqas-how-do-they-work</a></p></li>
@@ -916,11 +938,10 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="../Quantum%20Key%20Distribution.html"
@@ -931,10 +952,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
         <p class="prev-next-title">Quantum Key Distribution (BB84 Protocol)</p>
       </div>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -942,6 +960,7 @@ In this case, <span class="math notranslate nohighlight">\(t\)</span> represents
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -983,6 +1002,7 @@ By Avneesh Verma
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -1009,8 +1029,8 @@ By Avneesh Verma
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="../_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="../_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="../_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="../_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

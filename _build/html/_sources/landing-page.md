@@ -19,7 +19,6 @@ Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](ht
 **Engineering Physics @ University of Toronto**
 * Pursuing my undergrad in the most rigorous engineering program at Canada's top university.
 
-
 ## Projects
 **Summer Research @ National University of Singapore**
 * Worked at the Optical Materials and Devices Laboratory at NUS under Prof. Andrew Bettiol

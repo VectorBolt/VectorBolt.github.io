@@ -1,13 +1,12 @@
 
-
 <!DOCTYPE html>
 
 
-<html lang="en" >
+<html lang="en" data-content_root="./" >
 
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
     <title>Quantum Key Distribution (BB84 Protocol) &#8212; Avneesh Verma&#39;s Personal Website</title>
   
@@ -15,62 +14,58 @@
   
   <script data-cfasync="false">
     document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
-    document.documentElement.dataset.theme = localStorage.getItem("theme") || "light";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
   </script>
   
   <!-- Loaded before other Sphinx assets -->
-  <link href="_static/styles/theme.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/bootstrap.css?digest=e353d410970836974a52" rel="stylesheet" />
-<link href="_static/styles/pydata-sphinx-theme.css?digest=e353d410970836974a52" rel="stylesheet" />
+  <link href="_static/styles/theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/bootstrap.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+<link href="_static/styles/pydata-sphinx-theme.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
 
   
-  <link href="_static/vendor/fontawesome/6.1.2/css/all.min.css?digest=e353d410970836974a52" rel="stylesheet" />
-  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-solid-900.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-brands-400.woff2" />
-<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.1.2/webfonts/fa-regular-400.woff2" />
+  <link href="_static/vendor/fontawesome/6.5.2/css/all.min.css?digest=3ee479438cf8b5e0d341" rel="stylesheet" />
+  <link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-solid-900.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-brands-400.woff2" />
+<link rel="preload" as="font" type="font/woff2" crossorigin href="_static/vendor/fontawesome/6.5.2/webfonts/fa-regular-400.woff2" />
 
-    <link rel="stylesheet" type="text/css" href="_static/pygments.css" />
-    <link rel="stylesheet" href="_static/styles/sphinx-book-theme.css?digest=14f4ca6b54d191a8c7657f6c759bf11a5fb86285" type="text/css" />
-    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
-    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css" />
-    <link rel="stylesheet" type="text/css" href="_static/my-style.css" />
-    <link rel="stylesheet" type="text/css" href="_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+    <link rel="stylesheet" type="text/css" href="_static/styles/sphinx-book-theme.css?v=384b581d" />
+    <link rel="stylesheet" type="text/css" href="_static/togglebutton.css?v=13237357" />
+    <link rel="stylesheet" type="text/css" href="_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-thebe.css?v=4fa983c6" />
+    <link rel="stylesheet" type="text/css" href="_static/sphinx-design.min.css?v=87e54e7c" />
+    <link rel="stylesheet" type="text/css" href="_static/my-style.css?v=f1d1652c" />
   
   <!-- Pre-loaded scripts that we'll load fully later -->
-  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=e353d410970836974a52" />
-<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52" />
+  <link rel="preload" as="script" href="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341" />
+<link rel="preload" as="script" href="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341" />
+  <script src="_static/vendor/fontawesome/6.5.2/js/all.min.js?digest=3ee479438cf8b5e0d341"></script>
 
-    <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-    <script src="_static/jquery.js"></script>
-    <script src="_static/underscore.js"></script>
-    <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-    <script src="_static/doctools.js"></script>
-    <script src="_static/sphinx_highlight.js"></script>
-    <script src="_static/clipboard.min.js"></script>
-    <script src="_static/copybutton.js"></script>
-    <script src="_static/scripts/sphinx-book-theme.js?digest=5a5c038af52cf7bc1a1ec88eea08e6366ee68824"></script>
+    <script src="_static/documentation_options.js?v=9eb32ce0"></script>
+    <script src="_static/doctools.js?v=9a2dae69"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="_static/copybutton.js?v=f281be69"></script>
+    <script src="_static/scripts/sphinx-book-theme.js?v=efea14e4"></script>
     <script>let toggleHintShow = 'Click to show';</script>
     <script>let toggleHintHide = 'Click to hide';</script>
     <script>let toggleOpenOnPrint = 'true';</script>
-    <script src="_static/togglebutton.js"></script>
+    <script src="_static/togglebutton.js?v=4a39c7ea"></script>
     <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
-    <script src="_static/design-tabs.js"></script>
-    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"
-const thebe_selector = ".thebe,.cell"
-const thebe_selector_input = "pre"
-const thebe_selector_output = ".output, .cell_output"
-</script>
-    <script async="async" src="_static/sphinx-thebe.js"></script>
+    <script src="_static/design-tabs.js?v=36754332"></script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
+    <script async="async" src="_static/sphinx-thebe.js?v=c100c467"></script>
+    <script>var togglebuttonSelector = '.toggle, .admonition.dropdown';</script>
+    <script>const THEBE_JS_URL = "https://unpkg.com/thebe@0.8.2/lib/index.js"; const thebe_selector = ".thebe,.cell"; const thebe_selector_input = "pre"; const thebe_selector_output = ".output, .cell_output"</script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
     <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'Quantum Key Distribution';</script>
-    <link rel="shortcut icon" href="_static/VectorBolt Square.jpg"/>
+    <link rel="icon" href="_static/VectorBolt Square.jpg"/>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Solving the Weighted Maxcut Problem from Scratch with QAOA" href="Maxcut/maxcut.html" />
-    <link rel="prev" title="Avneesh Verma" href="landing-page.html" />
+    <link rel="prev" title="Hi, I’m Avneesh!" href="landing-page.html" />
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
   <meta name="docsearch:language" content="en"/>
   </head>
@@ -80,19 +75,23 @@ const thebe_selector_output = ".output, .cell_output"
 
   
   
-  <a class="skip-link" href="#main-content">Skip to main content</a>
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__primary"
-          id="__primary"/>
-  <label class="overlay overlay-primary" for="__primary"></label>
+          id="pst-primary-sidebar-checkbox"/>
+  <label class="overlay overlay-primary" for="pst-primary-sidebar-checkbox"></label>
   
   <input type="checkbox"
           class="sidebar-toggle"
-          name="__secondary"
-          id="__secondary"/>
-  <label class="overlay overlay-secondary" for="__secondary"></label>
+          id="pst-secondary-sidebar-checkbox"/>
+  <label class="overlay overlay-secondary" for="pst-secondary-sidebar-checkbox"></label>
   
   <div class="search-button__wrapper">
     <div class="search-button__overlay"></div>
@@ -114,12 +113,20 @@ const thebe_selector_output = ".output, .cell_output"
   <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
 </form></div>
   </div>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
   
-    <nav class="bd-header navbar navbar-expand-lg bd-navbar">
-    </nav>
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
   
+
   <div class="bd-container">
     <div class="bd-container__inner bd-page-width">
+      
+      
       
       <div class="bd-sidebar-primary bd-sidebar">
         
@@ -134,9 +141,11 @@ const thebe_selector_output = ".output, .cell_output"
   
     <div class="sidebar-primary-items__start sidebar-primary__section">
         <div class="sidebar-primary-item">
+
   
 
 <a class="navbar-brand logo" href="landing-page.html">
+  
   
   
   
@@ -146,18 +155,29 @@ const thebe_selector_output = ".output, .cell_output"
       
     
     
-    <img src="_static/Happy Headshot.jpg" class="logo__image only-light" alt="Logo image"/>
-    <script>document.write(`<img src="_static/Happy Headshot.jpg" class="logo__image only-dark" alt="Logo image"/>`);</script>
+    <img src="_static/Happy Headshot.jpg" class="logo__image only-light" alt="Avneesh Verma's Personal Website - Home"/>
+    <script>document.write(`<img src="_static/Happy Headshot.jpg" class="logo__image only-dark" alt="Avneesh Verma's Personal Website - Home"/>`);</script>
   
   
 </a></div>
-        <div class="sidebar-primary-item"><nav class="bd-links" id="bd-docs-nav" aria-label="Main">
+        <div class="sidebar-primary-item">
+
+ <script>
+ document.write(`
+   <button class="btn navbar-btn search-button-field search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass"></i>
+    <span class="search-button__default-text">Search</span>
+    <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+   </button>
+ `);
+ </script></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
     <div class="bd-toc-item navbar-nav active">
         
         <ul class="nav bd-sidenav bd-sidenav__home-link">
             <li class="toctree-l1">
                 <a class="reference internal" href="landing-page.html">
-                    Avneesh Verma
+                    Hi, I’m Avneesh!
                 </a>
             </li>
         </ul>
@@ -179,7 +199,7 @@ const thebe_selector_output = ".output, .cell_output"
 
       </div>
       
-      <main id="main-content" class="bd-main">
+      <main id="main-content" class="bd-main" role="main">
         
         
 
@@ -188,7 +208,7 @@ const thebe_selector_output = ".output, .cell_output"
           <div class="bd-content">
             <div class="bd-article-container">
               
-              <div class="bd-header-article">
+              <div class="bd-header-article d-print-none">
 <div class="header-article-items header-article__inner">
   
     <div class="header-article-items__start">
@@ -270,20 +290,22 @@ const thebe_selector_output = ".output, .cell_output"
 </button>
 
 
+
 <script>
 document.write(`
-  <button class="theme-switch-button btn btn-sm btn-outline-primary navbar-btn rounded-circle" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <span class="theme-switch" data-mode="light"><i class="fa-solid fa-sun"></i></span>
-    <span class="theme-switch" data-mode="dark"><i class="fa-solid fa-moon"></i></span>
-    <span class="theme-switch" data-mode="auto"><i class="fa-solid fa-circle-half-stroke"></i></span>
+  <button class="btn btn-sm navbar-btn theme-switch-button" title="light/dark" aria-label="light/dark" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="theme-switch nav-link" data-mode="light"><i class="fa-solid fa-sun fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="dark"><i class="fa-solid fa-moon fa-lg"></i></span>
+    <span class="theme-switch nav-link" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg"></i></span>
   </button>
 `);
 </script>
 
+
 <script>
 document.write(`
   <button class="btn btn-sm navbar-btn search-button search-button__button" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
-    <i class="fa-solid fa-magnifying-glass"></i>
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
   </button>
 `);
 </script>
@@ -333,12 +355,12 @@ document.write(`
               
                 
 <div id="searchbox"></div>
-                <article class="bd-article" role="main">
+                <article class="bd-article">
                   
   <section class="tex2jax_ignore mathjax_ignore" id="quantum-key-distribution-bb84-protocol">
-<h1>Quantum Key Distribution (BB84 Protocol)<a class="headerlink" href="#quantum-key-distribution-bb84-protocol" title="Permalink to this heading">#</a></h1>
+<h1>Quantum Key Distribution (BB84 Protocol)<a class="headerlink" href="#quantum-key-distribution-bb84-protocol" title="Link to this heading">#</a></h1>
 <section id="introduction">
-<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this heading">#</a></h2>
+<h2>Introduction<a class="headerlink" href="#introduction" title="Link to this heading">#</a></h2>
 <p>Let’s say <strong>Alice 💁‍♀️ and Bob 🙋‍♂️</strong> want to set up a secure communication channel, so that they can send private messages to each other without worrying about someone eavesdropping on their conversation.
 Unfortunately, it is virtually impossible to set up such a secure channel—there would <em>always</em> be some way of tapping into it and reading their messages.</p>
 <p>That’s where cryptography comes in! If Alice wants to send a message to Bob, she can encrypt it in some way (say, by replacing every letter in the alphabet with a number).</p>
@@ -356,7 +378,7 @@ Z \rightarrow 26
 <p>Let’s assume that, as long as Alice and Bob share a secret key, they are able to securely encrypt their messages in a way that would be impossible to decrypt without this key. So, if Eve taps into their communication channel and reads their messages, she would have no idea what the messages say, since she would not know the key used to encrypt and decrypt them.</p>
 </section>
 <section id="what-is-bb84">
-<h2>What is BB84?<a class="headerlink" href="#what-is-bb84" title="Permalink to this heading">#</a></h2>
+<h2>What is BB84?<a class="headerlink" href="#what-is-bb84" title="Link to this heading">#</a></h2>
 <p>Of course, in order to actually set up this encrypted channel, Alice and Bob actually need to communicate in secret to decide what key to use. But this kind of secure communication requires an encrypted channel, which is what we’re trying to create in the first place!</p>
 <p>Ideally, Alice and Bob could meet up in the real world, and Alice could whisper the key into Bob’s ear. But it would be impractical to meet up everytime they wanted to setup a private message channel—imagine if you had to meet someone in person before being able to email them at all!</p>
 <p>The BB84 protocol is a method of Quantum Key Distribution which solves this dilemma. If Alice uses this protocol to send a key to Bob, then they can know, with near-perfect certainty, whether the key has been intercepted or not. If it is <em>not</em> intercepted, then they have a secret key that they can use to set up an encrypted channel, so they can communicate freely without worrying about their messages being read by someone else! However, if the key <em>is</em> intercepted, they can just repeat the process again and again until they have a key that no one else knows.</p>
@@ -369,7 +391,7 @@ Since it is impossible to ensure perfect security, we must assume that any of th
 </ul>
 </section>
 <section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<h2>Overview<a class="headerlink" href="#overview" title="Link to this heading">#</a></h2>
 <p>Here’s how the protocol works in a nutshell:</p>
 <ol class="arabic simple">
 <li><p>Alice creates a random string of bits, and for each bit, she randomly chooses a basis to encode it in.</p></li>
@@ -393,7 +415,7 @@ Since it is impossible to ensure perfect security, we must assume that any of th
 <p><strong>First, we’ll take a look at how it works if the message is not intercepted by Eve</strong>.</p>
 </section>
 <section id="encoding">
-<h2>Encoding<a class="headerlink" href="#encoding" title="Permalink to this heading">#</a></h2>
+<h2>Encoding<a class="headerlink" href="#encoding" title="Link to this heading">#</a></h2>
 <p>The first step is for Alice to choose a string of bits and bases to encode them in. What do we mean by “bases”?
 Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis can be considered a possible bases. If a vector points directly upward, it is said to be in the state <span class="math notranslate nohighlight">\(|0\rangle\)</span>, and if it points downward, it is said to be in the state <span class="math notranslate nohighlight">\(|1\rangle\)</span>. The vertical axis is called the <span class="math notranslate nohighlight">\(Z\)</span>-axis. In the <span class="math notranslate nohighlight">\(Z\)</span>-basis, we can encode a 0 as <span class="math notranslate nohighlight">\(|0\rangle\)</span> (shown in the image on the left) and a 1 as <span class="math notranslate nohighlight">\(|1\rangle\)</span> (shown in the image on the right).</p>
 <div class="cell tag_remove-input docutils container">
@@ -472,7 +494,7 @@ Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis ca
 <p>Now, Alice encodes each bit into its corresponding basis on her quantum computer, creating a string of 500 qubits. She sends these qubits over an optical cable to Bob. Let’s see how to do this using Qiskit.</p>
 <p>By default, IBM’s quantum computers measure in the <span class="math notranslate nohighlight">\(Z\)</span>-basis, and all qubits are initialized to <span class="math notranslate nohighlight">\(|0\rangle\)</span>. To turn this into a <span class="math notranslate nohighlight">\(|1\rangle\)</span>, we need to apply an <span class="math notranslate nohighlight">\(X\)</span> gate.</p>
 <p>To encode in the <span class="math notranslate nohighlight">\(X\)</span>-basis, we start with the corresponding <span class="math notranslate nohighlight">\(|0\rangle\)</span> or <span class="math notranslate nohighlight">\(|1\rangle\)</span>, and then apply a Hadamard (H) gate. This gate converts a <span class="math notranslate nohighlight">\(|0\rangle\)</span> into a <span class="math notranslate nohighlight">\(|+\rangle\)</span> and a <span class="math notranslate nohighlight">\(|1\rangle\)</span> into a <span class="math notranslate nohighlight">\(|-\rangle\)</span>.</p>
-<table class="table">
+<div class="pst-scrollable-table-container"><table class="table">
 <thead>
 <tr class="row-odd"><th class="head text-center"><p>Bit</p></th>
 <th class="head text-center"><p>Basis</p></th>
@@ -503,6 +525,7 @@ Well, we can represent a qubit as a vector on a “Bloch Sphere”. Each axis ca
 </tr>
 </tbody>
 </table>
+</div>
 <p>We’ll store the quantum circuit used to encode each qubit.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -581,7 +604,7 @@ etc.
 </div>
 </section>
 <section id="sending-the-qubits">
-<h2>Sending the qubits<a class="headerlink" href="#sending-the-qubits" title="Permalink to this heading">#</a></h2>
+<h2>Sending the qubits<a class="headerlink" href="#sending-the-qubits" title="Link to this heading">#</a></h2>
 <p>Normally, Alice would send these encoded qubits over a quantum channel, such as an optical fibre cable. However, since we don’t have quantum channels in the real world yet, we’ll store the circuits for each qubit in an array called <code class="docutils literal notranslate"><span class="pre">QUANTUM_CHANNEL</span></code> for the sake of demonstration. This would be like if Alice stored the qubits in a building and waited for Bob to pick them up. Of course, just like a fibre optic cable, this building is also a location where Eve might intercept the message.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -592,7 +615,7 @@ etc.
 </div>
 </section>
 <section id="measurement">
-<h2>Measurement<a class="headerlink" href="#measurement" title="Permalink to this heading">#</a></h2>
+<h2>Measurement<a class="headerlink" href="#measurement" title="Link to this heading">#</a></h2>
 <p>The next step is for Bob to receive the encoded qubits and measure them. First, he must choose his own set of random bases, just like Alice.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -655,7 +678,7 @@ etc.
 </div>
 </section>
 <section id="comparison">
-<h2>Comparison<a class="headerlink" href="#comparison" title="Permalink to this heading">#</a></h2>
+<h2>Comparison<a class="headerlink" href="#comparison" title="Link to this heading">#</a></h2>
 <p>Now, Alice needs to tell Bob which bases she chose to encode her qubits in. She can tell him over any classical channel. The beauty of this protocol is that it doesn’t matter if Eve finds out which bases Alice used. Alice could even publicly post the list of bases she used on Twitter!</p>
 <a class="reference internal image-reference" href="_images/AnnounceBases.png" id="alice-announces-bases-on-twitter"><img alt="_images/AnnounceBases.png" id="alice-announces-bases-on-twitter" src="_images/AnnounceBases.png" style="width: 575px;" /></a>
 <div class="cell docutils container">
@@ -760,7 +783,7 @@ The key is 123 bits long.
 <p>The length of the key varies depending on how many bases they share in common.</p>
 </section>
 <section id="interception">
-<h2>Interception<a class="headerlink" href="#interception" title="Permalink to this heading">#</a></h2>
+<h2>Interception<a class="headerlink" href="#interception" title="Link to this heading">#</a></h2>
 <hr class="docutils" />
 <p>So far, we’ve only looked at the case where no one spying on Alice and Bob. But what if someone like Eve tries to intercept their key? Let’s see what happens in this case.</p>
 <p>First, Alice performs the encoding step as usual: she randomly generates a string of bits and bases to encode them in. She then sends the encoded qubits along a quantum channel (fibre-optic cable) to Bob)</p>
@@ -784,7 +807,7 @@ The key is 123 bits long.
 </div>
 </div>
 <section id="interception-by-eve">
-<h3>⚠️ Interception by Eve ⚠️<a class="headerlink" href="#interception-by-eve" title="Permalink to this heading">#</a></h3>
+<h3>⚠️ Interception by Eve ⚠️<a class="headerlink" href="#interception-by-eve" title="Link to this heading">#</a></h3>
 <p>This time, the qubits are intercepted by 😈 Eve. Let’s she what she would do. First, she would randomly choose a set of bases to measure the qubits in (since she has no idea which bases Alice used). Then, she’ll perform the measurements. This is similar to what Bob would normally do.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -817,7 +840,7 @@ The key is 123 bits long.
 </div>
 </section>
 <section id="id1">
-<h3>Comparison<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3>Comparison<a class="headerlink" href="#id1" title="Link to this heading">#</a></h3>
 <p>Again, Alice needs to tells Bob which bases she chose to encode her qubits in. She can tells him over any classical channel (perhaps even publicly on Twitter). Since this classical channel is public, Eve also knows which bases she used.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -847,7 +870,7 @@ The key is 123 bits long.
 </div>
 </section>
 <section id="waiiiiiiit-a-second">
-<h3>Waiiiiiiit a Second…<a class="headerlink" href="#waiiiiiiit-a-second" title="Permalink to this heading">#</a></h3>
+<h3>Waiiiiiiit a Second…<a class="headerlink" href="#waiiiiiiit-a-second" title="Link to this heading">#</a></h3>
 <p>Since Alice and Bob are only keeping the bits measured in the bases they shared in common, they <em>should</em> have the same bits. To make sure this is the case, Alice will announce the first few bits that she has, and Bob should have the same ones.</p>
 <div class="cell docutils container">
 <div class="cell_input docutils container">
@@ -872,7 +895,7 @@ The key is 123 bits long.
 </section>
 <hr class="docutils" />
 <section id="sources">
-<h2>Sources<a class="headerlink" href="#sources" title="Permalink to this heading">#</a></h2>
+<h2>Sources<a class="headerlink" href="#sources" title="Link to this heading">#</a></h2>
 <ul class="simple">
 <li><p>Qiskit Textbook: <a class="reference external" href="https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html">https://qiskit.org/textbook/ch-algorithms/quantum-key-distribution.html</a></p></li>
 <li><p>Qubit by Qubit’s Introduction to Quantum Computing Course</p></li>
@@ -905,11 +928,10 @@ The key is 123 bits long.
 
               
               
-                <footer class="bd-footer-article">
+              
+              
+                <footer class="prev-next-footer d-print-none">
                   
-<div class="footer-article-items footer-article__inner">
-  
-    <div class="footer-article-item"><!-- Previous / next buttons -->
 <div class="prev-next-area">
     <a class="left-prev"
        href="landing-page.html"
@@ -917,7 +939,7 @@ The key is 123 bits long.
       <i class="fa-solid fa-angle-left"></i>
       <div class="prev-next-info">
         <p class="prev-next-subtitle">previous</p>
-        <p class="prev-next-title">Avneesh Verma</p>
+        <p class="prev-next-title">Hi, I’m Avneesh!</p>
       </div>
     </a>
     <a class="right-next"
@@ -929,10 +951,7 @@ The key is 123 bits long.
       </div>
       <i class="fa-solid fa-angle-right"></i>
     </a>
-</div></div>
-  
 </div>
-
                 </footer>
               
             </div>
@@ -940,6 +959,7 @@ The key is 123 bits long.
             
               
                 <div class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
 
   <div class="sidebar-secondary-item">
   <div class="page-toc tocsection onthispage">
@@ -982,6 +1002,7 @@ By Avneesh Verma
   
   <div class="footer-item">
     
+
   <p class="copyright">
     
       © Copyright 2023.
@@ -1008,8 +1029,8 @@ By Avneesh Verma
   </div>
   
   <!-- Scripts loaded after <body> so the DOM is not blocked -->
-  <script src="_static/scripts/bootstrap.js?digest=e353d410970836974a52"></script>
-<script src="_static/scripts/pydata-sphinx-theme.js?digest=e353d410970836974a52"></script>
+  <script src="_static/scripts/bootstrap.js?digest=3ee479438cf8b5e0d341"></script>
+<script src="_static/scripts/pydata-sphinx-theme.js?digest=3ee479438cf8b5e0d341"></script>
 
   <footer class="bd-footer">
   </footer>

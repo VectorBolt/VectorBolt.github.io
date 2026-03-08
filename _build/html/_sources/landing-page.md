@@ -5,9 +5,24 @@ Here, you'll find what I've been working on, as well as some of my Jupyter noteb
 Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](https://www.linkedin.com/in/avneesh-verma/), [YouTube Channel](https://www.youtube.com/channel/UCN3uzbzGgzp75Cl2Ai73QSA), and [Medium](https://medium.com/@avneeshverma03).
 
 ## What I'm Working On
-**Research Intern @ Harvard & MIT | [RaX Collaboration](https://jdoyle.hsites.harvard.edu/rax)**
+**Research Intern @ Harvard & MIT | [RaX Collaboration](https://ultracoldmolecules.com/project/rax/)**
 * Laser cooling radium-containing molecules at the [Doyle Group](https://jdoyle.hsites.harvard.edu/) (Harvard) under Prof. John Doyle, in collaboration with the Prof. Garcia Ruiz's [Exotic Molecules and Atoms Group](https://www.garciaruizlab.com/) (MIT), the [Hutzler Lab](https://www.hutzlerlab.com/) (Caltech), and the [Factility for Rare Isotope Beams (FRIB)](https://frib.msu.edu/)
-* Designing our high-vacuum beamline and laser cooling region.
+* Designed the Cryogenic Buffer Gas Cell, where RaF and RaOH molecules will be produced via laser ablation using pulsed Nd:YAG lasers and cooled to 2K [{numref}`CBGB_Cell`].
+```{figure} Images/Projects/CBGB_HFL.png
+---
+name: CBGB_Cell
+---
+A cross-section view of the Cryogenic Buffer Gas Cell I designed, with a zoomed in view of the heated injector.
+```
+
+* Designed our high-vacuum beamline and transverse laser cooling region, using COMSOL to simulate effects of magnetic field coils.
+```{figure} Images/Projects/Beambox_and_Beamline_AssemblyCross.png
+---
+name: CAD
+---
+A CAD render of the Beambox, where radioactive molecules will be produced, and the beamline where transverse laser cooling will take place.
+```
+
 
 **Engineering Physics @ University of Toronto**
 * Pursuing my undergrad in the most rigorous engineering program at Canada's top university.
@@ -24,6 +39,13 @@ Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](ht
 * Developed a Python program to automate the stress calculation process for bolts in Blue Sky’s future generation solar cars, saving time that the mechanical team would have to spend analyzing the safety of the over 100 bolts that are expected to be used in the Blue Sky’s next solar car.
 * Assembled mechanical systems, such as brakes, latches, and suspension, in Blue Sky’s Gen XI solar car prior to testing sessions, allowing the team to evaluate the performance of these systems and identify design flaws before the biennial race in Australia.
 * Designed the rear suspension of Blue Sky's Gen XII solar car using CATIA, and conducted finite-element analysis with ANSYS Mechanical to verify structural integrity and optimize topology.
+
+```{figure} Images/Projects/MotorArmSim.JPG
+---
+name: MotorArmSim
+---
+Screenshot (from Ansys Mechanical) of an iteration of Finite Element Analysis of the Motor Arm I designed.
+```
 
 **Summer Research @ National University of Singapore**
 * Worked at the Optical Materials and Devices Laboratory at NUS under Prof. Andrew Bettiol

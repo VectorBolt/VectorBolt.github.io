@@ -1,7 +1,8 @@
 title: "Avneesh Verma's Personal Website"
 author: "Avneesh Verma"
-copyright: "2023"
-logo: "Happy Headshot.jpg" 
+copyright: "2026"
+#logo: "Happy Headshot.jpg" 
+logo: "Lab_Headshot_Smiling.png"
 only_build_toc_files: true
 execute:
   execute_notebooks: "off"

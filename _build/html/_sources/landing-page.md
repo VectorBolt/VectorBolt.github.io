@@ -5,6 +5,23 @@ Here, you'll find what I've been working on, as well as some of my Jupyter noteb
 Feel free to check out my [GitHub](https://github.com/VectorBolt), [LinkedIn](https://www.linkedin.com/in/avneesh-verma/), [YouTube Channel](https://www.youtube.com/channel/UCN3uzbzGgzp75Cl2Ai73QSA), and [Medium](https://medium.com/@avneeshverma03).
 
 ## What I'm Working On
+
+**Engineering Physics @ University of Toronto**
+* Pursuing my undergrad in the most rigorous engineering program at Canada's top university.
+
+**Undergraduate Thesis @ University of Toronto | [Ultracold Atoms Group](https://www.thywissenlab.ca/home)**
+* Working on the $^{39}\mathrm{K}$ Bose-Einstein Condensate experiment under Prof. Joseph Thywissen and Prof. Aephraim Steinberg.
+* Developing feedback and feedforward circuits to stabilize high-current magnetic field coils.
+
+**Engineering Physics Capstone @ University of Toronto | Braverman Group**
+* Developing high-voltage electronics to bias Avalanche Photodiodes for Prof. Boris Braverman's lab, which is developing a Yb Optical Atomic clock.
+
+## Projects & Experience
+**Summer Research Intern @ ETH Zurich | [Penning Micro-Trap Arrays](https://tiqi.ethz.ch/research/penning--ionpen-.html)**
+* Worked on the Calcium Penning experiment at the [Trapped-Ion Quantum Information Group](https://tiqi.ethz.ch/) under Prof. Jonathan Home.
+* Developed software to measure and compensate for stray electric fields above the surface of the ion-trap chip.
+* Developed plugins to control and interface with hardware devices like imaging cameras, piezos in cavities, and EOMs.
+
 **Research Intern @ Harvard & MIT | [RaX Collaboration](https://ultracoldmolecules.com/project/rax/)**
 * Laser cooling radium-containing molecules at the [Doyle Group](https://jdoyle.hsites.harvard.edu/) (Harvard) under Prof. John Doyle, in collaboration with the Prof. Garcia Ruiz's [Exotic Molecules and Atoms Group](https://www.garciaruizlab.com/) (MIT), the [Hutzler Lab](https://www.hutzlerlab.com/) (Caltech), and the [Factility for Rare Isotope Beams (FRIB)](https://frib.msu.edu/)
 * Designed the Cryogenic Buffer Gas Cell, where RaF and RaOH molecules will be produced via laser ablation using pulsed Nd:YAG lasers and cooled to 2K [{numref}`CBGB_Cell`].
@@ -14,7 +31,7 @@ name: CBGB_Cell
 ---
 A cross-section view of the Cryogenic Buffer Gas Cell I designed, with a zoomed in view of the heated injector.
 ```
-
+* Wrote a [paper](https://authors.elsevier.com/c/1nxOicPqb~KOm) on our heated injector design to supply warm reagent gases to a cryogenic environment.
 * Designed our high-vacuum beamline and transverse laser cooling region, using COMSOL to simulate effects of magnetic field coils.
 ```{figure} Images/Projects/Beambox_and_Beamline_AssemblyCross.png
 ---
@@ -22,12 +39,6 @@ name: CAD
 ---
 A CAD render of the Beambox, where radioactive molecules will be produced, and the beamline where transverse laser cooling will take place.
 ```
-
-
-**Engineering Physics @ University of Toronto**
-* Pursuing my undergrad in the most rigorous engineering program at Canada's top university.
-
-## Projects & Experience
 
 **Balloon Astrophyics Group @ University of Toronto | [GigaBIT Telescope](https://www.gigabitastro.com/)**
 * Worked on the [GigaBIT](https://www.gigabitastro.com/) project (Gigapixel Balloon-borne Imaging Telescope), a 1.5m visible/near-UV telescope which will fly in the stratosphere on a NASA superpressure balloon. GigaBIT will have the same resolution as the Hubble Space Telescope, but a field of view 80 times as large, and will act as an important complement to more recent space telescopes such as Euclid and the James Webb Space telescope, which observe primarily in the near Infrared. 
